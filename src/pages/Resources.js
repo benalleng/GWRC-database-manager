@@ -2,14 +2,14 @@ import { Link, useParams } from 'react-router-dom';
 
 import { useState } from 'react';
 
-import Pagination from '../components/Pagination';
+import { ResourcesPaginate } from '../components/Pagination';
 
 function Resources({ resources, user, createResources }) {
 
     const { page } = useParams();
 
     const [currentPage, setCurrentPage] = useState(page);
-    const [postsPerPage] = useState(17);
+    const [postsPerPage] = useState(15);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -48,12 +48,12 @@ function Resources({ resources, user, createResources }) {
                     </h2>
                 </div>
             ))}
-            {/* <Pagination
+            <ResourcesPaginate
                 postsPerPage={postsPerPage}
-                totalPosts={people.length}
+                totalPosts={resources.length}
                 paginate={paginate}
                 pageNum={page}
-            /> */}
+            />
             </div>
         )
     };
@@ -67,11 +67,6 @@ function Resources({ resources, user, createResources }) {
             ...newForm,
             [e.target.name]: e.target.value
         });
-    };
-
-    const handleCheckClick = () => {
-        let COCbool = !newForm.COC;
-        setNewForm({ COC: COCbool});
     };
 
     const handleSubmit = (e) => {
@@ -134,4 +129,4 @@ function Resources({ resources, user, createResources }) {
     
 }
 
-export default Resources
+export default Resources;

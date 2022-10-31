@@ -2,14 +2,14 @@ import { Link, useParams } from 'react-router-dom';
 
 import { useState } from 'react';
 
-import Pagination from '../components/Pagination';
+import { Pagination } from '../components/Pagination';
 
 function Index({ people, user, createPeople }) {
 
     const { page } = useParams();
 
     const [currentPage, setCurrentPage] = useState(page);
-    const [postsPerPage] = useState(17);
+    const [postsPerPage] = useState(15);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;

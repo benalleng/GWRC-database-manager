@@ -2,14 +2,14 @@ import { Link, useParams } from 'react-router-dom';
 
 import { useState } from 'react';
 
-import Pagination from '../components/Pagination';
+import { GrantsPaginate } from '../components/Pagination';
 
 function Grants({ grants, user, createGrants }) {
 
     const { page } = useParams();
 
     const [currentPage, setCurrentPage] = useState(page);
-    const [postsPerPage] = useState(17);
+    const [postsPerPage] = useState(15);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -55,12 +55,12 @@ function Grants({ grants, user, createGrants }) {
                     </h4>
                 </div>
             ))}
-            {/* <Pagination
+            <GrantsPaginate
                 postsPerPage={postsPerPage}
                 totalPosts={grants.length}
                 paginate={paginate}
                 pageNum={page}
-            /> */}
+            />
             </div>
         )
     }

@@ -187,7 +187,7 @@ function Index({ people, user, createPeople }) {
                         value={newForm.COC} 
                         onChange={handleCheckClick}
                         name="COC"
-                        />
+                    />
                 </label>
                 <input className="submit" type="submit" value="Submit" />
             </form>

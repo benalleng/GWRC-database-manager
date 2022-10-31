@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import Pagination from '../components/Pagination';
 
-function Resources({ grant, user, createGrant }) {
+function Resources({ resources, user, createResources }) {
 
     const { page } = useParams();
 
@@ -18,14 +18,8 @@ function Resources({ grant, user, createGrant }) {
 
     const [ newForm, setNewForm ] = useState({
         name: '',
-        title: '',
-        image: '',
-        organization: '',
-        email: '',
-        phoneNumber: '',
-        relationship: '',
-        COC: false,
-        notes: '',
+        description: '',
+        url: '',
         createdByUserId: '',
     });
 
@@ -40,6 +34,103 @@ function Resources({ grant, user, createGrant }) {
             <h1>Please Login to view your Resources</h1>
         </div>
     );
+
+    const loaded = () => {
+        const currentResources = resources.slice(indexOfFirstPost, indexOfLastPost)
+        return (
+            <div>
+            {currentResources.map(resource => (
+                <div className="resource" key={resource._id}>
+                    <h2>
+                        <Link to={`/resources/resource/${resource._id}`}>
+                            {resource.name}
+                        </Link>
+                    </h2>
+                </div>
+            ))}
+            {/* <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={people.length}
+                paginate={paginate}
+                pageNum={page}
+            /> */}
+            </div>
+        )
+    };
+
+    const loading = () => {
+        return <h1>Loading ...</h1>;
+    };
+
+    const handleChange = (e) => {
+        setNewForm({
+            ...newForm,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleCheckClick = () => {
+        let COCbool = !newForm.COC;
+        setNewForm({ COC: COCbool});
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(!newForm.image) delete newForm.image
+        createResources(newForm);
+        setNewForm({
+            name: '',
+            description: '',
+            url: '',
+            createdByUserId: '',
+        });
+    };
+
+    return (
+        <section className="Index">
+            <div className="top-main">
+            <h2 style={styleObj}>
+                <span className='red-create'>Create </span>New Resource:
+            </h2>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    <input 
+                        type="text"
+                        value={newForm.name} 
+                        onChange={handleChange}
+                        placeholder="Name"
+                        name="name"
+                        />
+                </label>
+                <label>
+                    <input 
+                        type="text"
+                        value={newForm.description} 
+                        onChange={handleChange}
+                        placeholder="Description"
+                        name="description"
+                        />
+                </label>
+                <label>
+                    <input 
+                        type="url"
+                        value={newForm.url} 
+                        onChange={handleChange}
+                        placeholder="http://resource-website.com"
+                        name="url"
+                        />
+                </label>
+                <input className="submit" type="submit" value="Submit" />
+            </form>
+            </div>
+            <div className='index-list'>
+            <h2 style={styleObj}>
+                Resources:
+            </h2>
+            { resources ? loaded() : loading() }
+            </div>
+        </section>
+    )
     
 }
 

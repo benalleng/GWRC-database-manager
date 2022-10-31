@@ -6,6 +6,7 @@ import Show from "../pages/Show";
 import Grants from '../pages/Grants';
 import Resources from '../pages/Resources';
 import Home from '../pages/Home';
+import GrantShow from '../pages/GrantShow';
 
 function PrivatePageContainer( {children, user} ) {
     return user ? children : <Navigate to="/" />
@@ -13,15 +14,19 @@ function PrivatePageContainer( {children, user} ) {
 
 function Main({user}) {
     const [people, setPeople ] = useState(null);
+    const [grants, setGrants ] = useState(null);
+    const [resources, setResources] = useState(null);
 
-    const API_URL = 'http://localhost:4000/api/people/'
+    const PEOPLE_API_URL = 'http://localhost:4000/api/people/'
+    const GRANTS_API_URL = 'http://localhost:4000/api/grants/'
+    const RESOURCES_API_URL = 'http://localhost:4000/api/resources/'
 
-    const getData = async () => {
+    const getPeopleData = async () => {
         if(!user) return;
         try {
             const token = await user.getIdToken();
             // console.log(token);
-            const response = await fetch(API_URL, {
+            const response = await fetch(PEOPLE_API_URL, {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + token
@@ -40,7 +45,7 @@ function Main({user}) {
         if (!user) return;
         try {
             const token = await user.getIdToken();
-            await fetch(API_URL, {
+            await fetch(PEOPLE_API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-type': 'Application/json',
@@ -48,7 +53,7 @@ function Main({user}) {
                 },
                 body: JSON.stringify(person)
             });
-            getData();
+            getPeopleData();
         } catch (error) {
             // TODO handle errors
         }
@@ -58,13 +63,13 @@ function Main({user}) {
         if (!user) return;
         try {
             const token = await user.getIdToken();
-            await fetch(API_URL + id, {
+            await fetch(PEOPLE_API_URL + id, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
             });
-            getData();
+            getPeopleData();
         } catch (error) {
             // TODO handle errors
             console.log(error);
@@ -75,7 +80,7 @@ function Main({user}) {
         if (!user) return;
         try {
             const token = await user.getIdToken();
-            await fetch(API_URL + id, {
+            await fetch(PEOPLE_API_URL + id, {
                 method: 'PUT',
                 headers: {
                     'Content-type': 'Application/json',
@@ -83,7 +88,155 @@ function Main({user}) {
                 },
                 body: JSON.stringify(updatedPerson)
             });
-            getData();
+            getPeopleData();
+        } catch (error) {
+            // TODO handle errors
+            console.log(error);
+        }
+    }
+
+    const getGrantsData = async () => {
+        if(!user) return;
+        try {
+            const token = await user.getIdToken();
+            // console.log(token);
+            const response = await fetch(GRANTS_API_URL, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+            const data = await response.json();
+            setGrants(data);
+        } catch (error) {
+            console.log(error);
+            // TODO add logic to alert the user that something went wrong
+            
+        }
+    }
+
+    const createGrants = async (grant) => {
+        if (!user) return;
+        try {
+            const token = await user.getIdToken();
+            await fetch(GRANTS_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'Application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(grant)
+            });
+            getGrantsData();
+        } catch (error) {
+            // TODO handle errors
+        }
+    }
+
+    const deleteGrants = async (id) => {
+        if (!user) return;
+        try {
+            const token = await user.getIdToken();
+            await fetch(GRANTS_API_URL + id, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+            getGrantsData();
+        } catch (error) {
+            // TODO handle errors
+            console.log(error);
+        }
+    }
+
+    const updateGrants = async (updatedGrant, id) => {
+        if (!user) return;
+        try {
+            const token = await user.getIdToken();
+            await fetch(GRANTS_API_URL + id, {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'Application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(updatedGrant)
+            });
+            getGrantsData();
+        } catch (error) {
+            // TODO handle errors
+            console.log(error);
+        }
+    }
+
+    const getResourcesData = async () => {
+        if(!user) return;
+        try {
+            const token = await user.getIdToken();
+            // console.log(token);
+            const response = await fetch(RESOURCES_API_URL, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+            const data = await response.json();
+            setResources(data);
+        } catch (error) {
+            console.log(error);
+            // TODO add logic to alert the user that something went wrong
+            
+        }
+    }
+
+    const createResources = async (resource) => {
+        if (!user) return;
+        try {
+            const token = await user.getIdToken();
+            await fetch(RESOURCES_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'Application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(resource)
+            });
+            getResourcesData();
+        } catch (error) {
+            // TODO handle errors
+        }
+    }
+
+    const deleteResources = async (id) => {
+        if (!user) return;
+        try {
+            const token = await user.getIdToken();
+            await fetch(RESOURCES_API_URL + id, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+            getResourcesData();
+        } catch (error) {
+            // TODO handle errors
+            console.log(error);
+        }
+    }
+
+    const updateResources = async (updatedResource, id) => {
+        if (!user) return;
+        try {
+            const token = await user.getIdToken();
+            await fetch(RESOURCES_API_URL + id, {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'Application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(updatedResource)
+            });
+            getResourcesData();
         } catch (error) {
             // TODO handle errors
             console.log(error);
@@ -91,7 +244,7 @@ function Main({user}) {
     }
 
     useEffect(() => {
-        user ? getData() : setPeople(null);
+        user ? (getPeopleData() && getGrantsData() && getResourcesData()) : (setGrants(null) && setPeople(null) && setResources(null));
     }, [user]);
 
     return(
@@ -107,7 +260,8 @@ function Main({user}) {
                 <Route path="/grants/:page" element={
                     <Grants 
                         user={user}
-                        grant={people}
+                        grants={grants}
+                        createGrants={createGrants}
                     />
                 } />
                 <Route path='/contacts/people/:id' element={
@@ -119,9 +273,20 @@ function Main({user}) {
                     />
                 </PrivatePageContainer>
                 } />
+                <Route path='/grants/grant/:id' element={
+                <PrivatePageContainer user={user}>
+                    <GrantShow 
+                        grants={grants} 
+                        deleteGrants={deleteGrants}
+                        updateGrants={updateGrants}
+                    />
+                </PrivatePageContainer>
+                } />
                 <Route path='/resources/:page' element={
                     <Resources 
                         user={user}
+                        resources={resources}
+                        createResources={createResources}
                     />
                 } />
                 <Route path='/' element={

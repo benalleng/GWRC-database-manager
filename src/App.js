@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import { onAuthStateChanged } from 'firebase/auth';
-// import { useEffect, useState } from 'react';
 
 export default function App() {
   const [ user, setUser ] = useState(null);

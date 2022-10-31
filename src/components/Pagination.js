@@ -14,7 +14,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
       <ul className='pagination'>
         {pageNum !== '2' && pageNum !== '1' ? (
           <Link 
-            to={'/1'} 
+            to={'/contacts/1'} 
             onClick={() => paginate(1)}
           >
             {'<<'}
@@ -22,7 +22,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
         ) : null}
         {pageNum !== '1' ? (
             <Link 
-                to={`/${pageNum - 1}`} 
+                to={`/contacts/${pageNum - 1}`} 
                 onClick={() => paginate(pageNum - 1)}
             >
             {'<'}
@@ -32,7 +32,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
           <li key={number} className='page-item'>
               <Link
                 onClick={() => paginate(number)}
-                to={`/${number}`}
+                to={`/contacts/${number}`}
                 className='page-link'
               >
               {number}
@@ -54,7 +54,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
             <li key={number - 1} className='page-indicator'>. . .</li>
             <li key={number} className='page-item'>
                 <Link
-                    to={`/${number}`}
+                    to={`/contacts/${number}`}
                     onClick={() => paginate(number)}
                     className='page-link'
                     >
@@ -65,7 +65,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
         ))) : null}
         {parseInt(pageNum, 10) !== pageNumbers.length ? (
             <Link
-                to={`/${parseInt(pageNum, 10) + 1}`}
+                to={`/contacts/${parseInt(pageNum, 10) + 1}`}
                 onClick={() => paginate(parseInt(pageNum, 10) + 1)}
             >
             {'>'}
@@ -73,7 +73,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
         ) : null}
         {pageNum !== `${pageNumbers.length}` && pageNum !== `${(pageNumbers.length - 1)}` ? (
             <Link 
-                to={`/${pageNumbers.length}`}
+                to={`/contacts/${pageNumbers.length}`}
                 onClick={() => paginate(pageNumbers.length)}
                 >
             {'>>'}

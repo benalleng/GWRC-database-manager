@@ -357,6 +357,13 @@ a:hover {
   min-height: 704px;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 462px;
+  padding-top: 20px;
+}
+
 @media (min-width: 768px) {
   .nav {
     justify-content: space-between;

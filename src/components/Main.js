@@ -17,9 +17,9 @@ function Main({user}) {
     const [grants, setGrants ] = useState(null);
     const [resources, setResources] = useState(null);
 
-    const PEOPLE_API_URL = 'http://localhost:4000/api/people/'
-    const GRANTS_API_URL = 'http://localhost:4000/api/grants/'
-    const RESOURCES_API_URL = 'http://localhost:4000/api/resources/'
+    const PEOPLE_API_URL = 'https://gwrc-database-app.herokuapp.com/api/people/'
+    const GRANTS_API_URL = 'https://gwrc-database-app.herokuapp.com/api/grants/'
+    const RESOURCES_API_URL = 'https://gwrc-database-app.herokuapp.com/api/resources/'
 
     const getPeopleData = async () => {
         if(!user) return;

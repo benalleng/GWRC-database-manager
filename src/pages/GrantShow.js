@@ -62,8 +62,8 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
     };
 
     const handleCheckClick = () => {
-        let appliedbool = !editForm.applied;
-        setEditForm({ applied: appliedbool});
+        let succeededBool = !editForm.succeeded;
+        setEditForm({ succeeded: succeededBool});
     };
     
     const loading = () => {
@@ -77,9 +77,9 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                 <h1 className='show-title'>{grant.name}</h1>
                 <h3>{grant.description? <>Grantor: {grant.organization}</> : null}</h3>
                 <h3>{grant.description ? <>Description: {grant.description}</> : null}</h3>
+                <h3>Date Open: {grant.dateOpen ? grant.dateOpen : <>N/A</>}</h3>
                 <h3>Due Date: {grant.dateDue ? grant.dateDue : <>N/A</>}</h3>
-                <h3>Date Open: {grant.dateOpen? grant.dateOpen : <>N/A</>}</h3>
-                <h3>{grant.applied ? <>Applied</> : <>Not Applied</>}</h3>
+                <h3>{grant.applied ? <>Applied On: {grant.applied}</> : <>Not Applied</>}</h3>
                 <h3>{grant.succeeded ? <>Succeeded</>: <>Not successful</>}</h3>
                 <h3><a href={grant.url}>{grant.url.slice(8)}</a></h3>
                 <h3>{grant.notes ? <>Notes: {grant.notes}</>: null}</h3>
@@ -108,6 +108,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     onChange={handleChange}
                     placeholder="Name"
                     name="name"
+                    title="Grant Name"
                 />
             </label>
             <label>
@@ -117,6 +118,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     onChange={handleChange}
                     placeholder="Organiztion"
                     name="organization"
+                    title="Grantor"
                 />
             </label>
             <label>
@@ -126,37 +128,35 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     onChange={handleChange}
                     placeholder="Description"
                     name="description"
+                    title="Description"
                 />
             </label>
             <label>
                 <input
-                    type="text"
+                    type="date"
                     value={editForm.dateOpen}
                     onChange={handleChange}
-                    placeholder="Date Due YYYY-MM-DD"
-                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
-                    title="YYYY-MM-DD or leave blank"
-                    name="dateDue"
+                    name="dateOpen"
+                    title="Application Open Date"
                 />
             </label>
             <label>
                 <input
-                    type="text"
+                    type="date"
                     value={editForm.dateDue}
                     onChange={handleChange}
-                    placeholder="Date Open YYYY-MM-DD" 
-                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
-                    title="YYYY-MM-DD or leave blank"
-                    name="dateOpen"
+                    name="dateDue"
+                    title="Application Due Date"
                 />
             </label>
             <label>
                 <input
-                    type="text"
+                    type="url"
                     value={editForm.url}
                     onChange={handleChange}
                     placeholder="URL"
                     name="url"
+                    title="Grant info URL"
                 />
             </label>
             <label>
@@ -166,24 +166,30 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     onChange={handleChange}
                     placeholder="lorem ipsum"
                     name="notes"
+                    title="Notes"
                 />
             </label>
-            <label> Applied:&nbsp;
-                <input 
-                    type="checkbox"
-                    value={editForm.applied} 
-                    onChange={handleChange}
-                    name="applied"
-                />
-            </label>
-            <label> Awarded Grant:&nbsp;
-                <input 
-                    type="checkbox"
-                    value={editForm.succeeded} 
-                    onChange={handleChange}
-                    name="succeeded"
-                />
-            </label>
+            <div>
+                <label>
+                    <input 
+                        type="date"
+                        defaultChecked={editForm.applied} 
+                        onChange={handleChange}
+                        placeholder="Date applied"
+                        name="applied"
+                        title="Date applied"
+                        />
+                </label>
+                <label> Awarded Grant:&nbsp;
+                    <input 
+                        type="checkbox"
+                        defaultChecked={editForm.succeeded} 
+                        onChange={handleCheckClick}
+                        name="succeeded"
+                        title="Successfully Awarded Grant?"
+                        />
+                </label>
+            </div>
             <input className="submit" type="submit" value="Submit" />
         </form>
             }

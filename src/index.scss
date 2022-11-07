@@ -194,6 +194,18 @@ a:hover {
   white-space: nowrap;
 }
 
+.grant-applied {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 5px;
+  white-space: nowrap;
+}
+
+.grant-applied > h2 > a {
+  color: rgb(13, 116, 13)
+}
+
 .resource {
   display: flex;
   align-items: flex-end;

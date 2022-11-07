@@ -30,6 +30,7 @@ function Show({ people, deletePeople, updatePeople }) {
     };
     
     const handleChange = (e) => {
+        handleCheckClick();
         setEditForm({
             ...editForm,
             [e.target.name]: e.target.value

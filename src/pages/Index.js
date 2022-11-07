@@ -47,7 +47,7 @@ function Index({ people, user, createPeople, sortPostsAlphabetical }) {
         return (
             <div>
             {currentPeople.map(person => (
-                <div className={(person.name == 'Ben Allen' || person.name == 'Maddie Harris') ? "special" : "person"} key={person._id}>
+                <div className={(person.name === 'Ben Allen') ? "special" : "person"} key={person._id}>
                     <h2>
                         <Link to={`/contacts/contact/${person._id}`}>
                             {person.name}
@@ -73,7 +73,6 @@ function Index({ people, user, createPeople, sortPostsAlphabetical }) {
     };
 
     const handleChange = (e) => {
-        handleCheckClick();
         setNewForm({
             ...newForm,
             [e.target.name]: e.target.value
@@ -184,11 +183,11 @@ function Index({ people, user, createPeople, sortPostsAlphabetical }) {
                         />
                 </label>
                 <div className='auto-wrap'>
-                    <label> COC:&nbsp;
+                    <label hidden> COC:&nbsp;
                         <input 
                             type="checkbox"
-                            value={newForm.COC} 
-                            onChange={handleChange}
+                            defaultChecked={newForm.COC} 
+                            onChange={handleCheckClick}
                             name="COC"
                             />
                     </label>

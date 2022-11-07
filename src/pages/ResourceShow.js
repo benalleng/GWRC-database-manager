@@ -65,7 +65,7 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
                 <section id={resource.name}>
                 <h1 className='show-title'>{resource.name}</h1>
                 <h3>Description: {resource.description}</h3>
-                <h3><a href={resource.url}></a></h3>
+                <h3><a href={resource.url}>{resource.url.slice(12)}</a></h3>
                 <button onClick={isEditing ? handleEdit : handleConfirmEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
                 <button onClick={handleConfirm}>Delete</button>
             </section>

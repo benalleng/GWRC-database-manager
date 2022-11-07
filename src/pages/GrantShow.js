@@ -73,9 +73,9 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
     const loaded = () => {
     
             return(
-                <section id={grant.name}>
+                <section className="show-content" id={grant.name}>
                 <h1 className='show-title'>{grant.name}</h1>
-                <h3>from {grant.organization}</h3>
+                <h3>Grantor: {grant.organization}</h3>
                 <h3>Description: {grant.description}</h3>
                 <h3>Due Date: {grant.dateDue ? grant.dateDue : <>N/A</>}</h3>
                 <h3>Date Open: {grant.dateOpen? grant.dateOpen : <>N/A</>}</h3>

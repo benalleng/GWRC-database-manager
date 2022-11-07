@@ -54,7 +54,7 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                         </Link>
                     </h2>
                     <h4 className="grant-org">
-                        from {grant.organization}
+                        {grant.organization}
                     </h4>
                 </div>
             ))}

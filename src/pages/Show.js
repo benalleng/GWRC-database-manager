@@ -73,7 +73,7 @@ function Show({ people, deletePeople, updatePeople }) {
     const loaded = () => {
     
             return(
-                <section id={person.name}>
+                <section className="show-content" id={person.name}>
                 <h1 className='show-title'>{person.name}</h1>
                 <img className='avatar-image' src={person.image} alt={person.name} />
                 <h3>{person.title} at {person.organization}</h3>

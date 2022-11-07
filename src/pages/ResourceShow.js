@@ -62,7 +62,7 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
     const loaded = () => {
     
             return(
-                <section id={resource.name}>
+                <section className="show-content" id={resource.name}>
                 <h1 className='show-title'>{resource.name}</h1>
                 <h3>Description: {resource.description}</h3>
                 <h3><a href={resource.url}>{resource.url.slice(8)}</a></h3>

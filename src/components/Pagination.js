@@ -10,7 +10,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
   }
 
   return (
-    <nav className='paginate-nav'>
+    <nav className='paginate-nav' key={pageNum - 10}>
       <ul className='pagination'>
         {pageNum !== '2' && pageNum !== '1' ? (
           <Link 
@@ -41,8 +41,8 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
         ))}
         {pageNum > parseInt(3) && pageNum !== `${pageNumbers.length}` ? (
             <>
-            <li className='page-indicator'>. . .</li>
-            <li className='page-indicator'>
+            <li className='page-indicator' key={pageNum - 2}>. . .</li>
+            <li className='page-indicator' key={pageNum - 3}>
                 {parseInt(pageNum)}
             </li>
             </>
@@ -93,7 +93,7 @@ const ResourcesPaginate = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
   }
 
   return (
-    <nav className='paginate-nav'>
+    <nav className='paginate-nav' key={pageNum - 10}>
       <ul className='pagination'>
         {pageNum !== '2' && pageNum !== '1' ? (
           <Link 
@@ -124,8 +124,8 @@ const ResourcesPaginate = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
         ))}
         {pageNum > parseInt(3) && pageNum !== `${pageNumbers.length}` ? (
             <>
-            <li className='page-indicator'>. . .</li>
-            <li className='page-indicator'>
+            <li className='page-indicator' key={pageNum - 2}>. . .</li>
+            <li className='page-indicator' key={pageNum - 3}>
                 {parseInt(pageNum)}
             </li>
             </>
@@ -176,7 +176,7 @@ const GrantsPaginate = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
   }
 
   return (
-    <nav className='paginate-nav'>
+    <nav className='paginate-nav' key={pageNum - 10}>
       <ul className='pagination'>
         {pageNum !== '2' && pageNum !== '1' ? (
           <Link 
@@ -207,8 +207,8 @@ const GrantsPaginate = ({ postsPerPage, totalPosts, paginate, pageNum }) => {
         ))}
         {pageNum > parseInt(3) && pageNum !== `${pageNumbers.length}` ? (
             <>
-            <li className='page-indicator'>. . .</li>
-            <li className='page-indicator'>
+            <li className='page-indicator' key={pageNum - 2}>. . .</li>
+            <li className='page-indicator' key={pageNum - 3}>
                 {parseInt(pageNum)}
             </li>
             </>

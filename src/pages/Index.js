@@ -53,7 +53,7 @@ function Index({ people, user, createPeople }) {
                         </Link>
                     </h2>
                     <h4 className='person-job'>
-                        {person.title} at {person.organization}
+                        <span className='person-title'>{person.title} at </span><span className='person-org'>{person.organization}</span>
                     </h4>
                 </div>
             ))}
@@ -72,6 +72,7 @@ function Index({ people, user, createPeople }) {
     };
 
     const handleChange = (e) => {
+        handleCheckClick();
         setNewForm({
             ...newForm,
             [e.target.name]: e.target.value
@@ -181,15 +182,17 @@ function Index({ people, user, createPeople }) {
                         name="notes"
                         />
                 </label>
-                <label> COC:&nbsp;
-                    <input 
-                        type="checkbox"
-                        value={newForm.COC} 
-                        onChange={handleCheckClick}
-                        name="COC"
-                    />
-                </label>
-                <input className="submit" type="submit" value="Submit" />
+                <div className='auto-wrap'>
+                    <label> COC:&nbsp;
+                        <input 
+                            type="checkbox"
+                            value={newForm.COC} 
+                            onChange={handleChange}
+                            name="COC"
+                            />
+                    </label>
+                    <input className="submit" type="submit" value="Submit" />
+                </div>
             </form>
             </div>
             <div className='index-list'>

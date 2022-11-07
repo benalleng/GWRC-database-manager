@@ -143,7 +143,7 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                         onChange={handleChange}
                         placeholder="Date Due YYYY-MM-DD"
                         pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
-                        title="include title with format YYYY-MM-DD or leave blank"
+                        title="YYYY-MM-DD or leave blank"
                         name="dateDue"
                     />
                 </label>
@@ -153,7 +153,8 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                         value={newForm.dateOpen}
                         onChange={handleChange}
                         placeholder="Date Open YYYY-MM-DD" 
-                        title="include title with format YYYY-MM-DD or leave blank"
+                        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
+                        title="YYYY-MM-DD or leave blank"
                         name="dateOpen"
                     />
                 </label>

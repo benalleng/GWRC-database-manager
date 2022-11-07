@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { GrantsPaginate } from '../components/Pagination';
 
-function Grants({ grants, user, createGrants }) {
+function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
 
     const { page } = useParams();
 
@@ -42,6 +42,7 @@ function Grants({ grants, user, createGrants }) {
     );
 
     const loaded = () => {
+        grants = sortPostsAlphabetical(grants)
         const currentGrants = grants.slice(indexOfFirstPost, indexOfLastPost)
         return (
             <div>
@@ -62,7 +63,7 @@ function Grants({ grants, user, createGrants }) {
                 totalPosts={grants.length}
                 paginate={paginate}
                 pageNum={page}
-            />
+                />
             </div>
         )
     }
@@ -171,13 +172,14 @@ function Grants({ grants, user, createGrants }) {
                         name="notes"
                     />
                 </label>
+                <div>
                 <label> Applied:&nbsp;
                     <input 
                         type="checkbox"
                         value={newForm.applied} 
                         onChange={handleChange}
                         name="applied"
-                    />
+                        />
                 </label>
                 <label> Awarded Grant:&nbsp;
                     <input 
@@ -185,8 +187,9 @@ function Grants({ grants, user, createGrants }) {
                         value={newForm.succeeded} 
                         onChange={handleChange}
                         name="succeeded"
-                    />
+                        />
                 </label>
+                </div>
                 <input className="submit" type="submit" value="Submit" />
             </form>
             </div>

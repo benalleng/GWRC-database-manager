@@ -12,7 +12,9 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
         dateDue: '',
         dateOpen: '',
         applied: true,
+        succeeded: true,
         url: '',
+        notes: '',
         createdByUserId: '',
     });
     
@@ -79,6 +81,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                 <h3>Date Open: {grant.dateOpen}</h3>
                 <h3>{grant.applied ? <span className='applied-check'>Applied</span> : <span className='applied-check'>Not Applied</span>}</h3>
                 <h3><a href={grant.url}></a></h3>
+                <h3>{grant.notes ? <span>Notes: {grant.notes}</span>: null}</h3>
                 <button onClick={isEditing ? handleEdit : handleConfirmEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
                 <button onClick={handleConfirm}>Delete</button>
             </section>
@@ -97,72 +100,87 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
             { grants ? loaded() : loading() }
             {isEditing && 
             <form onSubmit={handleSubmit}>
-                <label>Name:
-                    <input 
-                        type="text"
-                        value={editForm.name} 
-                        onChange={handleChange}
-                        placeholder="Name"
-                        name="name"
-                        />
-                </label>
-                <label>Organization:
-                    <input 
-                        type="text"
-                        value={editForm.organization} 
-                        onChange={handleChange}
-                        placeholder="Organization"
-                        name="organization"
-                        />
-                </label>
-                <label>Description:
-                    <input 
-                        type="text"
-                        value={editForm.organization} 
-                        onChange={handleChange}
-                        placeholder="Description"
-                        name="description"
-                        />
-                </label>
-                <label>Due Date:
-                    <input 
-                        type="date"
-                        value={editForm.dateDue} 
-                        onChange={handleChange}
-                        placeholder="mmm-dd-YYYY"
-                        pattern='[0-9]{2}-[0-9]{2}-[0-9]{4}'
-                        name="dateDue"
-                        />
-                </label>
-                <label>dateOpen:
-                    <input 
-                        type="date"
-                        value={editForm.dateOpen} 
-                        onChange={handleChange}
-                        placeholder="mmm-dd-YYYY"
-                        pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"
-                        name="dateDue"
-                        />
-                </label>
-                <label>Applied:
-                    <input 
-                        type="checkbox"
-                        defaultChecked={editForm.applied}
-                        onChange={handleCheckClick}
-                        name="applied"
-                        />
-                </label>
-                <label>URL:
-                    <input 
-                        type="text"
-                        value={editForm.url} 
-                        onChange={handleChange}
-                        placeholder="https://grant-website.com"
-                        name="url"
-                        />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
+            <label>
+                <input
+                    type="text"
+                    value={editForm.name}
+                    onChange={handleChange}
+                    placeholder="Name"
+                    name="name"
+                />
+            </label>
+            <label>
+                <input
+                    type="text"
+                    value={editForm.organization}
+                    onChange={handleChange}
+                    placeholder="Organiztion"
+                    name="organization"
+                />
+            </label>
+            <label>
+                <input
+                    type="text"
+                    value={editForm.description}
+                    onChange={handleChange}
+                    placeholder="Description"
+                    name="description"
+                />
+            </label>
+            <label>
+                <input
+                    type="text"
+                    value={editForm.dateDue}
+                    onChange={handleChange}
+                    placeholder="Date Due"
+                    name="dateDue"
+                />
+            </label>
+            <label>
+                <input
+                    type="text"
+                    value={editForm.dateOpen}
+                    onChange={handleChange}
+                    placeholder="Application Open"
+                    name="dateOpen"
+                />
+            </label>
+            <label>
+                <input
+                    type="text"
+                    value={editForm.url}
+                    onChange={handleChange}
+                    placeholder="URL"
+                    name="url"
+                />
+            </label>
+            <label>
+                <input
+                    type="text"
+                    value={editForm.notes}
+                    onChange={handleChange}
+                    placeholder="lorem ipsum"
+                    name="notes"
+                />
+            </label>
+            <label> Applied:&nbsp;
+                <input 
+                    type="checkbox"
+                    value={editForm.applied} 
+                    onChange={handleChange}
+                    name="applied"
+                />
+            </label>
+            <label> Awarded Grant:&nbsp;
+                <input 
+                    type="checkbox"
+                    value={editForm.succeeded} 
+                    onChange={handleChange}
+                    name="succeeded"
+                />
+            </label>
+            <input className="submit" type="submit" value="Submit" />
+        </form>
             }
             </div>
         </section>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-function ResourceShow({ resources, deleteResourcces, updateResources }) {
+function ResourceShow({ resources, deleteResources, updateResources }) {
     const { id } = useParams();
     const resource = resources ? resources.find(p => p._id === id) : null;
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ function ResourceShow({ resources, deleteResourcces, updateResources }) {
     };
 
     const handleDelete = () => {
-            deleteGrants(resource._id)
+            deleteResources(resource._id)
             navigate('/');
     };
     
@@ -34,7 +34,7 @@ function ResourceShow({ resources, deleteResourcces, updateResources }) {
         e.preventDefault();
         setIsEditing(false)
         alert('Updated!')
-        updateGrants(editForm, id);
+        updateResources(editForm, id);
     };
     
     const handleConfirm = () => {
@@ -96,7 +96,7 @@ function ResourceShow({ resources, deleteResourcces, updateResources }) {
                 <label>Description:
                     <input 
                         type="text"
-                        value={editForm.organization} 
+                        value={editForm.description} 
                         onChange={handleChange}
                         placeholder="Description"
                         name="description"

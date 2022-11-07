@@ -4,9 +4,10 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Index from "../pages/Index";
 import Show from "../pages/Show";
 import Grants from '../pages/Grants';
-import Resources from '../pages/Resources';
-import Home from '../pages/Home';
 import GrantShow from '../pages/GrantShow';
+import Resources from '../pages/Resources';
+import ResourceShow from '../pages/ResourceShow';
+import Home from '../pages/Home';
 
 function PrivatePageContainer( {children, user} ) {
     return user ? children : <Navigate to="/" />
@@ -243,6 +244,11 @@ function Main({user}) {
         }
     }
 
+    function sortPostsAlphabetical(people) {
+        people.sort((a, b) => a.name.localeCompare(b.name));
+        return people;
+    };
+
     useEffect(() => {
         user ? (getPeopleData() && getGrantsData() && getResourcesData()) : (setGrants(null) && setPeople(null) && setResources(null));
     }, [user]);
@@ -253,7 +259,8 @@ function Main({user}) {
                 <Route path="/contacts/:page" element={
                     <Index
                         user={user}
-                        people={people} 
+                        people={people}
+                        sortPostsAlphabetical={sortPostsAlphabetical} 
                         createPeople={createPeople} 
                     />
                 } />
@@ -261,7 +268,16 @@ function Main({user}) {
                     <Grants 
                         user={user}
                         grants={grants}
+                        sortPostsAlphabetical={sortPostsAlphabetical}
                         createGrants={createGrants}
+                    />
+                } />
+                <Route path='/resources/:page' element={
+                    <Resources 
+                        user={user}
+                        resources={resources}
+                        sortPostsAlphabetical={sortPostsAlphabetical}
+                        createResources={createResources}
                     />
                 } />
                 <Route path='/contacts/people/:id' element={
@@ -282,19 +298,20 @@ function Main({user}) {
                     />
                 </PrivatePageContainer>
                 } />
-                <Route path='/resources/:page' element={
-                    <Resources 
-                        user={user}
-                        resources={resources}
-                        createResources={createResources}
+                <Route path='/resources/resource/:id' element={
+                <PrivatePageContainer user={user}>
+                    <ResourceShow 
+                        resources={resources} 
+                        deleteResources={deleteResources}
+                        updateResources={updateResources}
                     />
+                </PrivatePageContainer>
                 } />
                 <Route path='/' element={
                     <Home/>
                 } />
             </Routes>
         </main>
-
     )
 }
 

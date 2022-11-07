@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { ResourcesPaginate } from '../components/Pagination';
 
-function Resources({ resources, user, createResources }) {
+function Resources({ resources, user, createResources, sortPostsAlphabetical }) {
 
     const { page } = useParams();
 
@@ -36,6 +36,7 @@ function Resources({ resources, user, createResources }) {
     );
 
     const loaded = () => {
+        resources = sortPostsAlphabetical(resources)
         const currentResources = resources.slice(indexOfFirstPost, indexOfLastPost)
         return (
             <div>

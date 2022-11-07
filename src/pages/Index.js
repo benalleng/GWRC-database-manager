@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Pagination } from '../components/Pagination';
 
-function Index({ people, user, createPeople }) {
+function Index({ people, user, createPeople, sortPostsAlphabetical }) {
 
     const { page } = useParams();
 
@@ -42,6 +42,7 @@ function Index({ people, user, createPeople }) {
     );
 
     const loaded = () => {
+        people = sortPostsAlphabetical(people)
         const currentPeople = people.slice(indexOfFirstPost, indexOfLastPost)
         return (
             <div>

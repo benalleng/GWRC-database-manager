@@ -79,7 +79,7 @@ function Show({ people, deletePeople, updatePeople }) {
                 <h3>{person.title} at {person.organization}</h3>
                 <h3>Email: {person.email}</h3>
                 <h3>Phone: {person.phoneNumber}</h3>
-                <h3>{person.COC ? <span className='COC-check'>COC organization</span> : <span className='COC-check'>Non-COC organization</span>}</h3>
+                <h3>{person.COC ? <>COC organization</> : <>Non-COC organization</>}</h3>
                 <h3>{person.relationship}</h3>
                 {person.notes ? <h3>Notes: {person.notes}</h3> : null}
                 <button onClick={isEditing ? handleEdit : handleConfirmEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>

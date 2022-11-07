@@ -47,7 +47,7 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
         return (
             <div>
             {currentGrants.map(grant => (
-                <div className={(grant.applied === 'true') ? "grant-applied" : "grant"} key={grant._id}>
+                <div className={grant.applied === 'false' ? "grant" : "grant-applied"} key={grant._id}>
                     <h2>
                         <Link to={`/grants/grant/${grant._id}`}>
                             {grant.name}
@@ -157,6 +157,16 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                 />
             </label>
             <label>
+                <input 
+                    type="date"
+                    defaultChecked={newForm.applied} 
+                    onChange={handleChange}
+                    placeholder="Date applied"
+                    name="applied"
+                    title="Date applied"
+                    />
+            </label>
+            <label>
                 <input
                     type="url"
                     value={newForm.url}
@@ -175,16 +185,6 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                     name="notes"
                     title="Notes"
                 />
-            </label>
-            <label>
-                <input 
-                    type="date"
-                    defaultChecked={newForm.applied} 
-                    onChange={handleChange}
-                    placeholder="Date applied"
-                    name="applied"
-                    title="Date applied"
-                    />
             </label>
             <label hidden> Awarded Grant:&nbsp;
                     <input 

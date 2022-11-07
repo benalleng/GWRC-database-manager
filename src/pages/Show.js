@@ -101,7 +101,7 @@ function Show({ people, deletePeople, updatePeople }) {
             { people ? loaded() : loading() }
             {isEditing && 
             <form onSubmit={handleSubmit}>
-                <label>Name:
+                <label>Name: <br />
                     <input 
                         type="text"
                         value={editForm.name} 
@@ -110,7 +110,7 @@ function Show({ people, deletePeople, updatePeople }) {
                         name="name"
                         />
                 </label>
-                <label>Title:
+                <label>Title: <br />
                     <input 
                         type="text"
                         value={editForm.title} 
@@ -119,7 +119,7 @@ function Show({ people, deletePeople, updatePeople }) {
                         name="title"
                         />
                 </label>
-                <label>Image:
+                <label>Image: <br />
                     <input 
                         type="text"
                         value={editForm.image} 
@@ -128,7 +128,7 @@ function Show({ people, deletePeople, updatePeople }) {
                         name="image"
                         />
                 </label>
-                <label>Organization:
+                <label>Organization: <br />
                     <input 
                         type="text"
                         value={editForm.organization} 
@@ -137,7 +137,7 @@ function Show({ people, deletePeople, updatePeople }) {
                         name="organization"
                         />
                 </label>
-                <label>Email:
+                <label>Email: <br />
                     <input 
                         type="email"
                         value={editForm.email} 
@@ -146,7 +146,7 @@ function Show({ people, deletePeople, updatePeople }) {
                         name="email"
                         />
                 </label>
-                <label>Phone Number:
+                <label>Phone Number: <br />
                     <input 
                         type="tel"
                         value={editForm.phoneNumber} 
@@ -156,7 +156,7 @@ function Show({ people, deletePeople, updatePeople }) {
                         name="phoneNumber"
                         />
                 </label>
-                <label>Relationship:
+                <label>Relationship: <br />
                     <input 
                         type="text"
                         value={editForm.relationship} 
@@ -165,21 +165,21 @@ function Show({ people, deletePeople, updatePeople }) {
                         name="relationship"
                         />
                 </label>
-                <label>COC:
-                    <input 
-                        type="checkbox"
-                        defaultChecked={editForm.COC}
-                        onChange={handleCheckClick}
-                        name="COC"
-                        />
-                </label>
-                <label>Notes:
+                <label>Notes: <br />
                     <input 
                         type="text"
                         value={editForm.notes} 
                         onChange={handleChange}
                         placeholder="lorem ipsum"
                         name="notes"
+                        />
+                </label>
+                <label>COC:
+                    <input 
+                        type="checkbox"
+                        defaultChecked={editForm.COC}
+                        onChange={handleCheckClick}
+                        name="COC"
                         />
                 </label>
                 <input type="submit" value="Submit" />

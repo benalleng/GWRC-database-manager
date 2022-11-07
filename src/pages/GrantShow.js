@@ -79,7 +79,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                 <h3>{grant.description ? <>Description: {grant.description}</> : null}</h3>
                 <h3>Date Open: {grant.dateOpen ? grant.dateOpen : <>N/A</>}</h3>
                 <h3>Due Date: {grant.dateDue ? grant.dateDue : <>N/A</>}</h3>
-                <h3>{grant.applied ? <>Applied On: {grant.applied}</> : <>Not Applied</>}</h3>
+                <h3>{grant.applied ? <>Date Applied: N/A</> : <>Date Applied: {grant.applied}</>}</h3>
                 <h3>{grant.succeeded ? <>Succeeded</>: <>Not successful</>}</h3>
                 <h3><a href={grant.url}>{grant.url.slice(8)}</a></h3>
                 <h3>{grant.notes ? <>Notes: {grant.notes}</>: null}</h3>
@@ -101,7 +101,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
             { grants ? loaded() : loading() }
             {isEditing && 
             <form onSubmit={handleSubmit}>
-            <label>
+            <label>Name: <br />
                 <input
                     type="text"
                     value={editForm.name}
@@ -111,7 +111,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     title="Grant Name"
                 />
             </label>
-            <label>
+            <label>Grantor: <br />
                 <input
                     type="text"
                     value={editForm.organization}
@@ -121,7 +121,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     title="Grantor"
                 />
             </label>
-            <label>
+            <label>Description: <br />
                 <input
                     type="text"
                     value={editForm.description}
@@ -131,7 +131,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     title="Description"
                 />
             </label>
-            <label>
+            <label>Date Open: <br />
                 <input
                     type="date"
                     value={editForm.dateOpen}
@@ -140,7 +140,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     title="Application Open Date"
                 />
             </label>
-            <label>
+            <label>Date Due: <br />
                 <input
                     type="date"
                     value={editForm.dateDue}
@@ -149,7 +149,17 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     title="Application Due Date"
                 />
             </label>
-            <label>
+            <label>Date Applied: <br />
+                <input 
+                    type="date"
+                    defaultChecked={editForm.applied} 
+                    onChange={handleChange}
+                    placeholder="Date applied"
+                    name="applied"
+                    title="Date applied"
+                    />
+            </label>
+            <label>URL: <br />
                 <input
                     type="url"
                     value={editForm.url}
@@ -159,7 +169,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     title="Grant info URL"
                 />
             </label>
-            <label>
+            <label>Notes: <br />
                 <input
                     type="text"
                     value={editForm.notes}
@@ -169,27 +179,15 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     title="Notes"
                 />
             </label>
-            <div>
-                <label>
-                    <input 
-                        type="date"
-                        defaultChecked={editForm.applied} 
-                        onChange={handleChange}
-                        placeholder="Date applied"
-                        name="applied"
-                        title="Date applied"
-                        />
-                </label>
-                <label> Awarded Grant:&nbsp;
-                    <input 
-                        type="checkbox"
-                        defaultChecked={editForm.succeeded} 
-                        onChange={handleCheckClick}
-                        name="succeeded"
-                        title="Successfully Awarded Grant?"
-                        />
-                </label>
-            </div>
+            <label> Awarded Grant:&nbsp;
+                <input 
+                    type="checkbox"
+                    defaultChecked={editForm.succeeded} 
+                    onChange={handleCheckClick}
+                    name="succeeded"
+                    title="Successfully Awarded Grant?"
+                    />
+            </label>
             <input className="submit" type="submit" value="Submit" />
         </form>
             }

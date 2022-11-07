@@ -81,7 +81,7 @@ function Show({ people, deletePeople, updatePeople }) {
                 <h3>Phone: {person.phoneNumber}</h3>
                 <h3>{person.COC ? <>COC organization</> : <>Non-COC organization</>}</h3>
                 <h3>{person.relationship}</h3>
-                {person.notes ? <h3>Notes: {person.notes}</h3> : null}
+                {person.notes ? <h3>{person.notes}</h3> : null}
                 <button onClick={isEditing ? handleEdit : handleConfirmEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
                 <button onClick={handleConfirm}>Delete</button>
             </section>

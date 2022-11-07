@@ -80,7 +80,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                 <h3>Due Date: {grant.dateDue}</h3>
                 <h3>Date Open: {grant.dateOpen}</h3>
                 <h3>{grant.applied ? <span className='applied-check'>Applied</span> : <span className='applied-check'>Not Applied</span>}</h3>
-                <h3><a href={grant.url}>{grant.url.slice(12)}</a></h3>
+                <h3><a href={grant.url}>{grant.url.slice(8)}</a></h3>
                 <h3>{grant.notes ? <span>Notes: {grant.notes}</span>: null}</h3>
                 <button onClick={isEditing ? handleEdit : handleConfirmEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
                 <button onClick={handleConfirm}>Delete</button>

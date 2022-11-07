@@ -47,7 +47,7 @@ function Index({ people, user, createPeople, sortPostsAlphabetical }) {
         return (
             <div>
             {currentPeople.map(person => (
-                <div className="person" key={person._id}>
+                <div className={(person.name == 'Ben Allen') ? "developer" : "person"} key={person._id}>
                     <h2>
                         <Link to={`/contacts/contact/${person._id}`}>
                             {person.name}

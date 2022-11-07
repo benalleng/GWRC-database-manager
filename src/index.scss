@@ -174,7 +174,7 @@ a:hover {
   white-space: nowrap;
 }
 
-.developer {
+.special {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -182,7 +182,7 @@ a:hover {
   white-space: nowrap;
 }
 
-.developer > h2 > a {
+.special > h2 > a {
   color: rgb(13, 116, 13);
 }
 

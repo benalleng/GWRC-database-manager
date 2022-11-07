@@ -54,6 +54,16 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
             handleEdit();
         }
     };
+
+    const handleURL = (resources) => {
+        if(resources.url.slice(0, 12) == "https:www.") {
+            return resources.url.slice(11);
+        } else if(resources.url.slice(0,11) == "http://www.") {
+            return resources.url.slice(10);
+        } else {
+            return resources.url;
+        }
+    }
     
     const loading = () => {
         return <h1>Loading ...</h1>
@@ -65,7 +75,7 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
                 <section id={resource.name}>
                 <h1 className='show-title'>{resource.name}</h1>
                 <h3>Description: {resource.description}</h3>
-                <h3><a href={resource.url}>{resource.url.slice(12)}</a></h3>
+                <h3><a href={resource.url}>{handleURL}</a></h3>
                 <button onClick={isEditing ? handleEdit : handleConfirmEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
                 <button onClick={handleConfirm}>Delete</button>
             </section>
@@ -108,6 +118,8 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
                         value={editForm.url} 
                         onChange={handleChange}
                         placeholder="https://resource-website.com"
+                        pattern="https?://.+" 
+                        title="Include http://"
                         name="url"
                         />
                 </label>

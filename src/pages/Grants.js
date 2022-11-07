@@ -141,7 +141,9 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                         type="text"
                         value={newForm.dateDue}
                         onChange={handleChange}
-                        placeholder="Date Due"
+                        placeholder="Date Due YYYY-MM-DD"
+                        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
+                        title="include title with format YYYY-MM-DD or leave blank"
                         name="dateDue"
                     />
                 </label>
@@ -150,7 +152,8 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                         type="text"
                         value={newForm.dateOpen}
                         onChange={handleChange}
-                        placeholder="Application Open"
+                        placeholder="Date Open YYYY-MM-DD" 
+                        title="include title with format YYYY-MM-DD or leave blank"
                         name="dateOpen"
                     />
                 </label>
@@ -160,6 +163,8 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                         value={newForm.url}
                         onChange={handleChange}
                         placeholder="URL"
+                        pattern="https?://.+" 
+                        title="Include http://"
                         name="url"
                     />
                 </label>

@@ -77,8 +77,8 @@ function Show({ people, deletePeople, updatePeople }) {
                 <h1 className='show-title'>{person.name}</h1>
                 <img className='avatar-image' src={person.image} alt={person.name} />
                 <h3>{person.title} at {person.organization}</h3>
-                <h3>Email: {person.email}</h3>
-                <h3>Phone: {person.phoneNumber}</h3>
+                <h3>Email: {person.email ? <>{person.email}</> : <>N/A</>}</h3>
+                <h3>Phone: {person.phoneNumber ? <>{person.phoneNumber}</> : <>N/A</>}</h3>
                 <h3>{person.COC ? <>COC organization</> : <>Non-COC organization</>}</h3>
                 <h3>{person.relationship}</h3>
                 {person.notes ? <h3>{person.notes}</h3> : null}

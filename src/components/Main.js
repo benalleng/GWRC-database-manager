@@ -280,7 +280,7 @@ function Main({user}) {
                         createResources={createResources}
                     />
                 } />
-                <Route path='/contacts/people/:id' element={
+                <Route path='/contacts/contact/:id' element={
                 <PrivatePageContainer user={user}>
                     <Show 
                         people={people} 

@@ -23,7 +23,9 @@ function Grants({ grants, user, createGrants }) {
         dateDue: '',
         dateOpen: '',
         applied: false,
+        succeeded: false,
         url: '',
+        notes: '',
         createdByUserId: '',
     });
 
@@ -70,6 +72,7 @@ function Grants({ grants, user, createGrants }) {
     };
 
     const handleChange = (e) => {
+        handleCheckClick();
         setNewForm({
             ...newForm,
             [e.target.name]: e.target.value
@@ -91,7 +94,9 @@ function Grants({ grants, user, createGrants }) {
             dateDue: '',
             dateOpen: '',
             applied: false,
+            succeeded: false,
             url: '',
+            notes: '',
             createdByUserId: '',
         });
     }
@@ -148,14 +153,6 @@ function Grants({ grants, user, createGrants }) {
                         name="dateOpen"
                     />
                 </label>
-                <label> Applied:&nbsp;
-                    <input 
-                        type="checkbox"
-                        value={newForm.applied} 
-                        onChange={handleCheckClick}
-                        name="applied"
-                    />
-                </label>
                 <label>
                     <input
                         type="text"
@@ -163,6 +160,31 @@ function Grants({ grants, user, createGrants }) {
                         onChange={handleChange}
                         placeholder="URL"
                         name="url"
+                    />
+                </label>
+                <label>
+                    <input
+                        type="text"
+                        value={newForm.notes}
+                        onChange={handleChange}
+                        placeholder="lorem ipsum"
+                        name="notes"
+                    />
+                </label>
+                <label> Applied:&nbsp;
+                    <input 
+                        type="checkbox"
+                        value={newForm.applied} 
+                        onChange={handleChange}
+                        name="applied"
+                    />
+                </label>
+                <label> Awarded Grant:&nbsp;
+                    <input 
+                        type="checkbox"
+                        value={newForm.succeeded} 
+                        onChange={handleChange}
+                        name="succeeded"
                     />
                 </label>
                 <input className="submit" type="submit" value="Submit" />

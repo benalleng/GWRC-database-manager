@@ -182,7 +182,6 @@ function Index({ people, user, createPeople, sortPostsAlphabetical }) {
                         name="notes"
                         />
                 </label>
-                <div className='auto-wrap'>
                     <label hidden> COC:&nbsp;
                         <input 
                             type="checkbox"
@@ -192,7 +191,6 @@ function Index({ people, user, createPeople, sortPostsAlphabetical }) {
                             />
                     </label>
                     <input className="submit" type="submit" value="Submit" />
-                </div>
             </form>
             </div>
             <div className='index-list'>

@@ -176,18 +176,17 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                     title="Notes"
                 />
             </label>
-            <div>
-                <label>
-                    <input 
-                        type="date"
-                        defaultChecked={newForm.applied} 
-                        onChange={handleChange}
-                        placeholder="Date applied"
-                        name="applied"
-                        title="Date applied"
-                        />
-                </label>
-                <label> Awarded Grant:&nbsp;
+            <label>
+                <input 
+                    type="date"
+                    defaultChecked={newForm.applied} 
+                    onChange={handleChange}
+                    placeholder="Date applied"
+                    name="applied"
+                    title="Date applied"
+                    />
+            </label>
+            <label hidden> Awarded Grant:&nbsp;
                     <input 
                         type="checkbox"
                         defaultChecked={newForm.succeeded} 
@@ -196,7 +195,6 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                         title="Successfully Awarded Grant?"
                         />
                 </label>
-            </div>
             <input className="submit" type="submit" value="Submit" />
         </form>
             </div>

@@ -130,18 +130,22 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
             <label>
                 <input
                     type="text"
-                    value={editForm.dateDue}
+                    value={editForm.dateOpen}
                     onChange={handleChange}
-                    placeholder="Date Due"
+                    placeholder="Date Due YYYY-MM-DD"
+                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
+                    title="YYYY-MM-DD or leave blank"
                     name="dateDue"
                 />
             </label>
             <label>
                 <input
                     type="text"
-                    value={editForm.dateOpen}
+                    value={editForm.dateDue}
                     onChange={handleChange}
-                    placeholder="Application Open"
+                    placeholder="Date Open YYYY-MM-DD" 
+                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
+                    title="YYYY-MM-DD or leave blank"
                     name="dateOpen"
                 />
             </label>

@@ -160,12 +160,10 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
                 </label>
                 <label>
                     <input
-                        type="text"
+                        type="url"
                         value={newForm.url}
                         onChange={handleChange}
                         placeholder="URL"
-                        pattern="https?://.+" 
-                        title="Include http://"
                         name="url"
                     />
                 </label>

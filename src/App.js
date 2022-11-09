@@ -2,9 +2,8 @@ import { auth } from './firebase';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Main from './components/Main';
-// import Searchination from './components/Searchination'
 import Footer from './components/Footer';
-import { onAuthStateChanged } from 'firebase/auth';
+// import { auth } from 'firebase/auth';
 
 export default function App() {
   const [ user, setUser ] = useState(null);
@@ -25,7 +24,6 @@ export default function App() {
     <div className='App'>
       <Header user={user}/>
       <Main user={user}/>
-      {/* <Searchination user={user}/> */}
       <Footer />
     </div>
   );

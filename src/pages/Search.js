@@ -22,9 +22,7 @@ function Search({ people, grants, resources, user, sortPeopleAlphabetical }) {
     const loaded = () => {
         people = sortPeopleAlphabetical(people)
         const searchPerson = people.filter((person) => {
-            if (searchValue === "") {
-                return person;
-            } else if (person.name.toLowerCase().includes(searchValue.toLowerCase())) {
+            if (person.name.toLowerCase().includes(searchValue.toLowerCase())) {
                 return person;
             } else if (person.title.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
                 return person;
@@ -34,23 +32,19 @@ function Search({ people, grants, resources, user, sortPeopleAlphabetical }) {
                 return person;
             } else if (person.phoneNumber.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
                 return person;
-            } else return person;
+            } else return;
           })
           const searchGrant = grants.filter((grant) => {
-            if (searchValue === "") {
-                return grant;
-            } else if (grant.name.toLowerCase().includes(searchValue.toLowerCase())) {
+            if (grant.name.toLowerCase().includes(searchValue.toLowerCase())) {
                 return grant;
             } else if (grant.organization.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
                 return grant;
-            } else return grant;
+            } else return;
           })
           const searchResource = resources.filter((resource) => {
-            if (searchValue === "") {
+            if (resource.name.toLowerCase().includes(searchValue.toLowerCase())) {
                 return resource;
-            } else if (resource.name.toLowerCase().includes(searchValue.toLowerCase())) {
-                return resource;
-            } else return resource;
+            } else return;
           })
         return (
             <div>

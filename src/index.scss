@@ -186,7 +186,7 @@ a:hover {
   color: rgb(13, 116, 13);
 }
 
-.grant > h2 > a {
+.grant {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -208,7 +208,7 @@ a:hover {
   color: rgb(13, 116, 13)
 }
 
-.resource h2 a {
+.resource {
   display: flex;
   align-items: flex-end;
   margin-bottom: 5px;

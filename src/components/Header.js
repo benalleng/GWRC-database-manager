@@ -21,7 +21,7 @@ function Header({ user }) {
             </div>
         <nav className='nav' id="myNav">
             <Link to='/search'>
-                <h1>Home</h1>
+                <h1>Search</h1>
             </Link>
             <Link to='/contacts/1'>
                 <h1>Contact Management</h1>

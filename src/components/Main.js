@@ -10,7 +10,7 @@ import ResourceShow from '../pages/ResourceShow';
 import Search from '../pages/Search'
 import Home from '../pages/Home';
 
-function PrivatePageContainer( {children, user} ) {
+function PrivatePageContainer({ children, user }) {
     return user ? children : <Navigate to="/" />
 }
 
@@ -258,7 +258,11 @@ function Main({user}) {
         <main>
             <Routes>
                 <Route path='/' element={
-                    <Home/>
+                    <Home
+                    user={user}
+                    people={people}
+                    grants={grants}
+                    resources={resources}/>
                 } />
                 <Route path='/search' element={
                 <PrivatePageContainer user={user}>

@@ -6,17 +6,18 @@ function Home({ people, grants, resources, user, sortPeopleAlphabetical }) {
     // const [searchGrants, setsearchValue] = useState("");
     // const [searchResources, setsearchValue] = useState("");
 
-    if(!user) return (
-        <div className='login-placeholder'>
-            <h1>Please Login to see your contacts</h1>
-        </div>
-    );
 
     const styleObj = {
         fontFamily: 'Lora',
         color: '#d09910',
         fontSize: '30px',
     }
+
+    if(!user) return (
+        <div className='login-placeholder'>
+            <h1>Please Login to see your contacts</h1>
+        </div>
+    );
 
     const loaded = () => {
         people = sortPeopleAlphabetical(people)
@@ -41,8 +42,6 @@ function Home({ people, grants, resources, user, sortPeopleAlphabetical }) {
             } else if (grant.name.toLowerCase().includes(searchValue.toLowerCase())) {
                 return grant;
             } else if (grant.organization.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
-                return grant;
-            } else if (grant.dateDue.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
                 return grant;
             }
           })

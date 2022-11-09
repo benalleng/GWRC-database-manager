@@ -7,7 +7,7 @@ import Grants from '../pages/Grants';
 import GrantShow from '../pages/GrantShow';
 import Resources from '../pages/Resources';
 import ResourceShow from '../pages/ResourceShow';
-import Home from '../pages/Home';
+import Home from '../pages/Home'
 
 function PrivatePageContainer( {children, user} ) {
     return user ? children : <Navigate to="/" />
@@ -244,9 +244,9 @@ function Main({user}) {
         }
     }
 
-    function sortPostsAlphabetical(people) {
-        people.sort((a, b) => a.name.localeCompare(b.name));
-        return people;
+    function sortPeopleAlphabetical(data) {
+        data.sort((a, b) => a.name.localeCompare(b.name));
+        return data;
     };
 
     useEffect(() => {
@@ -256,11 +256,18 @@ function Main({user}) {
     return(
         <main>
             <Routes>
+                <Route path='/' element={
+                    <Home
+                        user={user}
+                        people={people}
+                        sortPeopleAlphabetical={sortPeopleAlphabetical}
+                    />
+                } />
                 <Route path="/contacts/:page" element={
                     <Index
                         user={user}
                         people={people}
-                        sortPostsAlphabetical={sortPostsAlphabetical} 
+                        sortPeopleAlphabetical={sortPeopleAlphabetical} 
                         createPeople={createPeople} 
                     />
                 } />
@@ -268,7 +275,7 @@ function Main({user}) {
                     <Grants 
                         user={user}
                         grants={grants}
-                        sortPostsAlphabetical={sortPostsAlphabetical}
+                        sortPeopleAlphabetical={sortPeopleAlphabetical}
                         createGrants={createGrants}
                     />
                 } />
@@ -276,7 +283,7 @@ function Main({user}) {
                     <Resources 
                         user={user}
                         resources={resources}
-                        sortPostsAlphabetical={sortPostsAlphabetical}
+                        sortPeopleAlphabetical={sortPeopleAlphabetical}
                         createResources={createResources}
                     />
                 } />
@@ -306,9 +313,6 @@ function Main({user}) {
                         updateResources={updateResources}
                     />
                 </PrivatePageContainer>
-                } />
-                <Route path='/' element={
-                    <Home/>
                 } />
             </Routes>
         </main>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { GrantsPaginate } from '../components/Pagination';
 
-function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
+function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
 
     const { page } = useParams();
 
@@ -42,7 +42,7 @@ function Grants({ grants, user, createGrants, sortPostsAlphabetical }) {
     );
 
     const loaded = () => {
-        grants = sortPostsAlphabetical(grants)
+        grants = sortPeopleAlphabetical(grants)
         const currentGrants = grants.slice(indexOfFirstPost, indexOfLastPost)
         return (
             <div>

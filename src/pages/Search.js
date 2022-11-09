@@ -108,7 +108,7 @@ Phone Number`}
                 />
             </div>
             <div className="index-list">
-            { people ? loaded() : loading()}
+            { (people && grants && resources) ? loaded() : loading()}
             </div>
         </section>
     )

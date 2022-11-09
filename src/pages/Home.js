@@ -15,7 +15,7 @@ function Home({ people, grants, resources, user, sortPeopleAlphabetical }) {
 
     if(!user) return (
         <div className='login-placeholder'>
-            <h1>Please Login to see your contacts</h1>
+            <h1>Please Login to search</h1>
         </div>
     );
 

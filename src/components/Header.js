@@ -5,7 +5,7 @@ function Header({ user }) {
     return(
         <>
             <div className='logo-container'>
-                <Link to='/'>
+                <Link to='/search'>
                     <img src="https://www.gwregion.org/wp-content/uploads/2018/03/logo.png" alt="George Washington Regional Commission" id="logo" data-height-percentage="90" data-actual-width="286" data-actual-height="101"></img>
                 </Link>
             </div>

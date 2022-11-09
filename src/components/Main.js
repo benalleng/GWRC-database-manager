@@ -256,7 +256,7 @@ function Main({user}) {
     return(
         <main>
             <Routes>
-                <Route path='/' element={
+                <Route path='/search' element={
                     <Home
                         user={user}
                         people={people}

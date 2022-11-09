@@ -99,7 +99,7 @@ function Home({ people, grants, resources, user, sortPeopleAlphabetical }) {
         <section className="Home">
         <div className="top-main">
             <h2 style={styleObj}>
-                <span className="red-create">Search for</span> Contacts, Grants, or Resources
+                <span className="red-create">Search</span> Contacts, Grants, or Resources
             </h2>
             <input
                 style={{ width: "30%", height: "25px" }}

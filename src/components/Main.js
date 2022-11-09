@@ -7,7 +7,8 @@ import Grants from '../pages/Grants';
 import GrantShow from '../pages/GrantShow';
 import Resources from '../pages/Resources';
 import ResourceShow from '../pages/ResourceShow';
-import Home from '../pages/Home'
+import Search from '../pages/Search'
+import Home from '../pages/Home';
 
 function PrivatePageContainer( {children, user} ) {
     return user ? children : <Navigate to="/" />
@@ -256,14 +257,19 @@ function Main({user}) {
     return(
         <main>
             <Routes>
+                <Route path='/' element={
+                    <Home/>
+                } />
                 <Route path='/search' element={
-                    <Home
+                <PrivatePageContainer user={user}>
+                    <Search
                         user={user}
                         people={people}
                         grants={grants}
                         resources={resources}
                         sortPeopleAlphabetical={sortPeopleAlphabetical}
-                    />
+                        />
+                </PrivatePageContainer>
                 } />
                 <Route path="/contacts/:page" element={
                     <Index

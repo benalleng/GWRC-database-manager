@@ -186,11 +186,13 @@ a:hover {
   color: rgb(13, 116, 13);
 }
 
-.grant {
+.grant > h2 > a {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -206,10 +208,12 @@ a:hover {
   color: rgb(13, 116, 13)
 }
 
-.resource {
+.resource h2 a {
   display: flex;
   align-items: flex-end;
   margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -258,6 +262,14 @@ a:hover {
       font-size: x-large;
     }
   }
+}
+
+.nav a:first-child {
+  display: none;
+}
+
+.nav .icon {
+  display: none;
 }
 
 #main-footer {
@@ -360,12 +372,19 @@ a:hover {
     margin-right: 1.5rem;
     cursor: default;
   }
-  div.auth {
-    cursor: pointer;
-  } div.auth:hover {
-    text-decoration: underline;
-  }
 }
+
+.auth-welcome {
+  font-size: x-large;
+}
+
+.auth {
+    cursor: pointer;
+    font-size: x-large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  } h1.auth:hover {
+    opacity: 0.7;
+  }
 
 .pagination {
   display: flex;
@@ -407,6 +426,40 @@ a:hover {
   min-height: 704px;
 }
 
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  z-index: 9999999;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -429,5 +482,54 @@ a:hover {
 @media (max-width: 550px) {
   .pagination {
     margin: 0px 10% 0px 0px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    
+    h1.auth-welcome, h1.auth {
+      display: none;
+    }
+  }
+  
+  .nav a:not(:first-child), .auth-options, .dropdown .dropbtn{
+    display: none;
+  }
+
+  .nav a:first-child {
+    display: block;
+  }
+
+  .nav button.icon {
+    float: right;
+    position: absolute;
+    display: block;
+    align-self: flex-end;
+    right: 0;
+    top: 0;
+  }
+
+}
+
+@media screen and (max-width: 1000px) {
+  .nav.responsive {position: relative;}
+  .nav.responsive button.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .nav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .nav.responsive .auth {
+    display: block;
   }
 }

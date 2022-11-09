@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Home({ people, grants, resources, user, sortPeopleAlphabetical }) {
+function Search({ people, grants, resources, user, sortPeopleAlphabetical }) {
     const [searchValue, setSearchValue] = useState("");
     // const [searchGrants, setsearchValue] = useState("");
     // const [searchResources, setsearchValue] = useState("");
@@ -34,7 +34,7 @@ function Home({ people, grants, resources, user, sortPeopleAlphabetical }) {
                 return person;
             } else if (person.phoneNumber.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
                 return person;
-            }
+            } else return person;
           })
           const searchGrant = grants.filter((grant) => {
             if (searchValue === "") {
@@ -43,14 +43,14 @@ function Home({ people, grants, resources, user, sortPeopleAlphabetical }) {
                 return grant;
             } else if (grant.organization.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
                 return grant;
-            }
+            } else return grant;
           })
           const searchResource = resources.filter((resource) => {
             if (searchValue === "") {
                 return resource;
             } else if (resource.name.toLowerCase().includes(searchValue.toLowerCase())) {
                 return resource;
-            }
+            } else return resource;
           })
         return (
             <div>
@@ -120,4 +120,4 @@ Phone Number`}
     )
 }
 
-export default Home;
+export default Search;

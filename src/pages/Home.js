@@ -10,11 +10,17 @@ function Home({ people, user, sortPeopleAlphabetical }) {
         </div>
     );
 
+    const styleObj = {
+        fontFamily: 'Lora',
+        color: '#d09910',
+        fontSize: '30px',
+    }
+
     const loaded = () => {
         people = sortPeopleAlphabetical(people)
         const searchPeople = people.filter((person) => {
             if (searchValue === "") {
-                return "";
+                return person;
             } else if (person.name.toLowerCase().includes(searchValue.toLowerCase())) {
                 return person;
             } else if (person.title.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
@@ -30,12 +36,15 @@ function Home({ people, user, sortPeopleAlphabetical }) {
         return (
             <div>
                 {searchPeople.map((person) => (
-                    <div>
-                        <h5 key={person._id}>
+                    <div className={(person.name === 'Ben Allen') ? "special" : "person"} key={person._id}>
+                        <h2 key={person._id}>
                             <Link to={`/contacts/contact/${person._id}`}>
                                 {person.name}
                             </Link>
-                        </h5>
+                        </h2>
+                        <h4 className='person-job'>
+                            <span className='person-title'>{person.title} at </span><span className='person-org'>{person.organization}</span>
+                        </h4>
                     </div>
                 ))}
             </div> 
@@ -47,10 +56,15 @@ function Home({ people, user, sortPeopleAlphabetical }) {
 
     return (
         <section className="Home">
-        <div>
-            <h3>
-                Search for <button>Contacts</button>
-            </h3>
+        <div className="top-main">
+            <h2 style={styleObj}>
+                <label>Search for</label>
+            </h2>
+                    <select>
+                        <option value="contacts">Contacts</option>
+                        <option value="grants">Grants</option>
+                        <option value="resources">Resources</option>
+                    </select>
             <input
                 style={{ width: "30%", height: "25px" }}
                 type="text"
@@ -63,6 +77,11 @@ Email,
 Phone Number`}
                 onChange={(e) => setSearchValue(e.target.value)}
                 />
+            </div>
+            <div className="index-list">
+            <h2 style={styleObj}>
+                Contacts:
+            </h2>
             { people ? loaded() : loading()}
             </div>
         </section>

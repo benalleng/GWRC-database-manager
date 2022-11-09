@@ -19,6 +19,12 @@ function Home({ people, user, sortPeopleAlphabetical }) {
                 return person;
             } else if (person.title.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
                 return person;
+            } else if (person.organization.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
+                return person;
+            } else if (person.email.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
+                return person;
+            } else if (person.phoneNumber.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
+                return person;
             }
           })
         return (
@@ -42,11 +48,19 @@ function Home({ people, user, sortPeopleAlphabetical }) {
     return (
         <section className="Home">
         <div>
-            <h3>Search Filter</h3>
+            <h3>
+                Search for <button>Contacts</button>
+            </h3>
             <input
                 style={{ width: "30%", height: "25px" }}
                 type="text"
                 placeholder="Search..."
+                title={`Search for:
+Name,
+Title,
+Organization,
+Email,
+Phone Number`}
                 onChange={(e) => setSearchValue(e.target.value)}
                 />
             { people ? loaded() : loading()}

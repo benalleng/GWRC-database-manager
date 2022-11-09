@@ -36,7 +36,7 @@ function Header({ user }) {
             {
                 user ?
                 <>
-                    <h1 className='auth-welcome'>Welcome, {user.displayName.split(' ')[0]}</h1>
+                    <h1 className='auth-welcome'>Hi, {user.displayName.split(' ')[0]}!</h1>
                     <h1 className="auth" onClick={logout}>Logout</h1>
                 </>
                 :

@@ -264,10 +264,6 @@ a:hover {
   }
 }
 
-.nav a:first-child {
-  display: none;
-}
-
 .nav .icon {
   display: none;
 }
@@ -485,7 +481,7 @@ a:hover {
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1085px) {
   .nav {
     display: flex;
     flex-direction: column;
@@ -517,7 +513,7 @@ a:hover {
 
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1085px) {
   .nav.responsive {position: relative;}
   .nav.responsive button.icon {
     position: absolute;

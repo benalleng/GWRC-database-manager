@@ -260,6 +260,8 @@ function Main({user}) {
                     <Home
                         user={user}
                         people={people}
+                        grants={grants}
+                        resources={resources}
                         sortPeopleAlphabetical={sortPeopleAlphabetical}
                     />
                 } />

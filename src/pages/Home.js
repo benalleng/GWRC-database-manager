@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Home({ people, user, sortPeopleAlphabetical }) {
+function Home({ people, grants, resources, user, sortPeopleAlphabetical }) {
     const [searchValue, setSearchValue] = useState("");
+    // const [searchGrants, setsearchValue] = useState("");
+    // const [searchResources, setsearchValue] = useState("");
 
     if(!user) return (
         <div className='login-placeholder'>
@@ -18,7 +20,7 @@ function Home({ people, user, sortPeopleAlphabetical }) {
 
     const loaded = () => {
         people = sortPeopleAlphabetical(people)
-        const searchPeople = people.filter((person) => {
+        const searchPerson = people.filter((person) => {
             if (searchValue === "") {
                 return person;
             } else if (person.name.toLowerCase().includes(searchValue.toLowerCase())) {
@@ -33,10 +35,28 @@ function Home({ people, user, sortPeopleAlphabetical }) {
                 return person;
             }
           })
+          const searchGrant = grants.filter((grant) => {
+            if (searchValue === "") {
+                return grant;
+            } else if (grant.name.toLowerCase().includes(searchValue.toLowerCase())) {
+                return grant;
+            } else if (grant.organization.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
+                return grant;
+            } else if (grant.dateDue.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
+                return grant;
+            }
+          })
+          const searchResource = resources.filter((resource) => {
+            if (searchValue === "") {
+                return resource;
+            } else if (resource.name.toLowerCase().includes(searchValue.toLowerCase())) {
+                return resource;
+            }
+          })
         return (
             <div>
-                {searchPeople.map((person) => (
-                    <div className={(person.name === 'Ben Allen') ? "special" : "person"} key={person._id}>
+                {searchPerson.map((person) => (
+                    <div className="person" key={person._id}>
                         <h2 key={person._id}>
                             <Link to={`/contacts/contact/${person._id}`}>
                                 {person.name}
@@ -46,6 +66,27 @@ function Home({ people, user, sortPeopleAlphabetical }) {
                             <span className='person-title'>{person.title} at </span><span className='person-org'>{person.organization}</span>
                         </h4>
                     </div>
+                ))}
+                {searchGrant.map(grant => (
+                <div className={grant.applied === 'false' ? "grant" : "grant-applied"} key={grant._id}>
+                    <h2>
+                        <Link to={`/grants/grant/${grant._id}`}>
+                            {grant.name}
+                        </Link>
+                    </h2>
+                    <h4 className="grant-org">
+                        {grant.organization}
+                    </h4>
+                </div>
+                ))}
+                {searchResource.map(resource => (
+                <div className="resource" key={resource._id}>
+                    <h2>
+                        <Link to={`/resources/resource/${resource._id}`}>
+                            {resource.name}
+                        </Link>
+                    </h2>
+                </div>
                 ))}
             </div> 
         )
@@ -58,13 +99,8 @@ function Home({ people, user, sortPeopleAlphabetical }) {
         <section className="Home">
         <div className="top-main">
             <h2 style={styleObj}>
-                <label>Search for</label>
+                <span className="red-create">Search for</span> Contacts, Grants, or Resources
             </h2>
-                    <select>
-                        <option value="contacts">Contacts</option>
-                        <option value="grants">Grants</option>
-                        <option value="resources">Resources</option>
-                    </select>
             <input
                 style={{ width: "30%", height: "25px" }}
                 type="text"
@@ -79,9 +115,6 @@ Phone Number`}
                 />
             </div>
             <div className="index-list">
-            <h2 style={styleObj}>
-                Contacts:
-            </h2>
             { people ? loaded() : loading()}
             </div>
         </section>

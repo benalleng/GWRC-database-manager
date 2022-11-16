@@ -77,7 +77,7 @@ function Search({ people, grants, resources, user, sortPeopleAlphabetical }) {
                         </Link>
                     </h2>
                     <h4 className="grant-org">
-                        {grant.organization}
+                        Grant through {grant.organization}
                     </h4>
                 </div>
                 ))}
@@ -88,6 +88,9 @@ function Search({ people, grants, resources, user, sortPeopleAlphabetical }) {
                             {resource.name}
                         </Link>
                     </h2>
+                    <h4 className="resource-marker">
+                        Resource
+                    </h4>
                 </div>
                 ))}
             </div> 

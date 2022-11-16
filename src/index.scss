@@ -217,6 +217,13 @@ a:hover {
   white-space: nowrap;
 }
 
+.resource-marker {
+  font-family: $main-font;
+  font-size: 17px;
+  color: #666;
+  margin-left: 10px;
+}
+
 .person-job {
   margin-left: 15px;
   overflow: hidden;
@@ -444,6 +451,7 @@ a:hover {
   font-size: 16px;
   padding: 0px;
   cursor: pointer;
+  font-weight: 800;
 }
 
 .dropdown .dropbtn {

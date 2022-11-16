@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 function Header({ user }) {
     const [open, setOpen] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
 
     const navMenu = () => {
         const x = document.getElementById("myNav");
@@ -14,6 +15,16 @@ function Header({ user }) {
         } else {
           x.className = "nav";
         }
+    };
+
+    const handleLogin = () => {
+        login();
+        setIsLogin(prevState => !prevState);
+    };
+
+    const handleLogout = () => {
+        logout();
+        setIsLogin(prevState => !prevState);
     };
 
     const handleOpen = () => setOpen(true);
@@ -45,7 +56,7 @@ function Header({ user }) {
                 user ?
                 <>
                     <h1 className='auth-welcome'>Hi, {user.displayName.split(' ')[0]}!</h1>
-                    <h1 className="auth" onClick={handleOpen}>Logout</h1>
+                    <h1 className="auth" onClick={isLogin ? handleOpen : handleLogin}>{isLogin ? 'Logout' : 'Login'}</h1>
                     <Modal
                         open={open}
                         onClose={handleClose}  
@@ -57,13 +68,13 @@ function Header({ user }) {
                             <p>
                                 Are you sure you want to logout?
                             </p>
-                            <button className='confirm' onClick={logout}>Yes</button>
+                            <button className='confirm' onClick={handleLogout}>Yes</button>
                             <button className='cancel' onClick={handleClose}>Cancel</button>
                         </Box>
                     </Modal>
                 </>
                 :
-                <h1 className="auth" onClick={login}>Login</h1>
+                <h1 className="auth" onClick={isLogin ? handleClose : handleLogin}>Login</h1>
             }
         </nav>
         </>

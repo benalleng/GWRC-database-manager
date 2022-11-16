@@ -127,7 +127,7 @@ function Resources({ resources, user, createResources, sortPeopleAlphabetical })
                         />
                 </label>
                 <div className="submit-box">
-                    <input className="submit" type="submit" value="Submit" />
+                    <input className="submit" type="submit" value="Create" />
                     <button className='clear' onClick={clearInput}>Clear</button>
                 </div>
             </form>

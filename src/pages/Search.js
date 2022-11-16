@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Search({ people, grants, resources, user, sortPeopleAlphabetical }) {
-    const [searchValue, setSearchValue] = useState("");
+    let [searchValue, setSearchValue] = useState("");
     // const [searchGrants, setsearchValue] = useState("");
     // const [searchResources, setsearchValue] = useState("");
 
@@ -19,6 +19,11 @@ function Search({ people, grants, resources, user, sortPeopleAlphabetical }) {
         </div>
     );
 
+    const clearInput = (e) => {
+        e.preventDefault();
+        setSearchValue("");
+    }
+
     const loaded = () => {
         people = sortPeopleAlphabetical(people)
         const searchPerson = people.filter((person) => {
@@ -32,19 +37,23 @@ function Search({ people, grants, resources, user, sortPeopleAlphabetical }) {
                 return person;
             } else if (person.phoneNumber.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
                 return person;
-            } else return;
+            } else return null;
           })
           const searchGrant = grants.filter((grant) => {
             if (grant.name.toLowerCase().includes(searchValue.toLowerCase())) {
                 return grant;
             } else if (grant.organization.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
                 return grant;
-            } else return;
+            } else if (grant.description.toLowerCase().includes(searchValue.toLocaleLowerCase())){
+                return grant;
+            } else return null;
           })
           const searchResource = resources.filter((resource) => {
             if (resource.name.toLowerCase().includes(searchValue.toLowerCase())) {
                 return resource;
-            } else return;
+            } else if (resource.description.toLowerCase().includes(searchValue.toLocaleLowerCase())){
+                return resource;
+            } else return null;
           })
         return (
             <div>
@@ -97,15 +106,17 @@ function Search({ people, grants, resources, user, sortPeopleAlphabetical }) {
             <input
                 style={{ width: "30%", height: "25px" }}
                 type="text"
+                value={searchValue}
                 placeholder="Search..."
                 title={`Search for:
 Name,
 Title,
-Organization,
+Key-Words,
 Email,
 Phone Number`}
                 onChange={(e) => setSearchValue(e.target.value)}
                 />
+                <button className="clear-input" onClick={clearInput}>X</button>
             </div>
             <div className="index-list">
             { (people && grants && resources) ? loaded() : loading()}

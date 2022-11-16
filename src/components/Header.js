@@ -1,7 +1,11 @@
 import { login, logout } from '../firebase';
 import { Link } from 'react-router-dom';
+import { Modal } from '@mui/material';
+import { Box } from '@mui/system';
+import { useState } from 'react';
 
 function Header({ user }) {
+    const [open, setOpen] = useState(false);
 
     const navMenu = () => {
         const x = document.getElementById("myNav");
@@ -10,7 +14,11 @@ function Header({ user }) {
         } else {
           x.className = "nav";
         }
-      } 
+    };
+
+    const handleOpen = () => setOpen(true);
+
+    const handleClose = () => setOpen(false);
 
     return(
         <>
@@ -37,7 +45,22 @@ function Header({ user }) {
                 user ?
                 <>
                     <h1 className='auth-welcome'>Hi, {user.displayName.split(' ')[0]}!</h1>
-                    <h1 className="auth" onClick={logout}>Logout</h1>
+                    <h1 className="auth" onClick={handleOpen}>Logout</h1>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}  
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description" 
+                    >
+                        <Box>
+                            <h2 id="parent-modal-title">Logout</h2>
+                            <p>
+                                Are you sure you want to logout?
+                            </p>
+                            <button className='confirm' onClick={logout}>Yes</button>
+                            <button className='cancel' onClick={handleClose}>Cancel</button>
+                        </Box>
+                    </Modal>
                 </>
                 :
                 <h1 className="auth" onClick={login}>Login</h1>

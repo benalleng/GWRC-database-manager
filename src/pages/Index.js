@@ -102,6 +102,22 @@ function Index({ people, user, createPeople, sortPeopleAlphabetical }) {
         });
     };
 
+    const clearInput = (e) => {
+        e.preventDefault();
+        setNewForm({
+            name: '',
+            title: '',
+            image: '',
+            organization: '',
+            email: '',
+            phoneNumber: '',
+            relationship: '',
+            COC: false,
+            notes: '',
+            createdByUserId: '',
+        });
+    };
+
     return (
         <section className="Index">
             <div className="top-main">
@@ -191,6 +207,7 @@ function Index({ people, user, createPeople, sortPeopleAlphabetical }) {
                             />
                     </label>
                     <input className="submit" type="submit" value="Submit" />
+                    <button onClick={clearInput}>Clear</button>
             </form>
             </div>
             <div className='index-list'>

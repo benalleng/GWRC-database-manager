@@ -82,6 +82,16 @@ function Resources({ resources, user, createResources, sortPeopleAlphabetical })
         });
     };
 
+    const clearInput = (e) => {
+        e.preventDefault();
+        setNewForm({
+            name: '',
+            description: '',
+            url: '',
+            createdByUserId: ''
+        });
+    };
+
     return (
         <section className="Index">
             <div className="top-main">
@@ -117,6 +127,7 @@ function Resources({ resources, user, createResources, sortPeopleAlphabetical })
                         />
                 </label>
                 <input className="submit" type="submit" value="Submit" />
+                <button onClick={clearInput}>Clear</button>
             </form>
             </div>
             <div className='index-list'>

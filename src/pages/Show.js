@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Modal } from '@mui/material';
+import { Box } from '@mui/system';
 
 function Show({ people, deletePeople, updatePeople }) {
+    const [openEdit, setOpenEdit] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
     const { id } = useParams();
     const person = people ? people.find(p => p._id === id) : null;
     const navigate = useNavigate();
@@ -21,6 +25,7 @@ function Show({ people, deletePeople, updatePeople }) {
     const [isEditing, setIsEditing] = useState(false);
     
     const handleEdit = () => {
+        handleCloseEdit();
         setIsEditing(prevState => !prevState);
     };
 
@@ -43,24 +48,14 @@ function Show({ people, deletePeople, updatePeople }) {
         alert('Updated!')
         updatePeople(editForm, id);
     };
-    
-    const handleConfirm = () => {
-        const confirmBox = window.confirm(
-            `Are you sure you want to delete ${person.name}?`
-        )
-        if (confirmBox === true) {
-            handleDelete();
-        }
-    };
 
-    const handleConfirmEdit = () => {
-        const confirmBox = window.confirm(
-            `Are you sure you want to edit ${person.name}?`
-        )
-        if (confirmBox === true) {
-            handleEdit();
-        }
-    };
+    const handleOpenEdit = () => setOpenEdit(true);
+
+    const handleCloseEdit = () => setOpenEdit(false);
+
+    const handleOpenDelete = () => setOpenDelete(true);
+
+    const handleCloseDelete = () => setOpenDelete(false);
 
     const handleCheckClick = () => {
         let COCbool = !editForm.COC;
@@ -83,8 +78,38 @@ function Show({ people, deletePeople, updatePeople }) {
                 <h3>{person.COC ? <>COC organization</> : <>Non-COC organization</>}</h3>
                 <h3>{person.relationship}</h3>
                 {person.notes ? <h3>{person.notes}</h3> : null}
-                <button onClick={isEditing ? handleEdit : handleConfirmEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
-                <button onClick={handleConfirm}>Delete</button>
+                <button className='edit' onClick={isEditing ? handleEdit : handleOpenEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
+                    <Modal
+                        open={openEdit}
+                        onClose={handleCloseEdit}  
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description" 
+                    >
+                        <Box>
+                            <h2 id="parent-modal-title">Confirm Edit</h2>
+                            <p>
+                                Are you sure you want to edit {person.name}?
+                            </p>
+                            <button className='confirm' onClick={handleEdit}>Yes</button>
+                            <button className='cancel' onClick={handleCloseEdit}>Cancel</button>
+                        </Box>
+                    </Modal>
+                <button className='delete' onClick={handleOpenDelete}>Delete</button>
+                    <Modal
+                        open={openDelete}
+                        onClose={handleCloseDelete}  
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description" 
+                    >
+                        <Box>
+                            <h2 id="parent-modal-title">Confirm Delete</h2>
+                            <p>
+                                Are you sure you want to delete {person.name}?
+                            </p>
+                            <button className='confirm' onClick={handleDelete}>Yes</button>
+                            <button className='cancel' onClick={handleCloseDelete}>Cancel</button>
+                        </Box>
+                    </Modal>
             </section>
         )
     };

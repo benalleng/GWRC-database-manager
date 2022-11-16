@@ -99,7 +99,23 @@ function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
             notes: '',
             createdByUserId: '',
         });
-    }
+    };
+
+    const clearInput = (e) => {
+        e.preventDefault();
+        setNewForm({
+            name: '',
+            organization: '',
+            description: '',
+            dateDue: '',
+            dateOpen: '',
+            applied: false,
+            succeeded: false,
+            url: '',
+            notes: '',
+            createdByUserId: '',
+        });
+    };
 
     return (
         <section className='Index'>
@@ -196,6 +212,7 @@ function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
                         />
                 </label>
             <input className="submit" type="submit" value="Submit" />
+            <button onClick={clearInput}>Clear</button>
         </form>
             </div>
             <div className='index-list'>

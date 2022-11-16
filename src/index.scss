@@ -449,13 +449,27 @@ a:hover {
   min-height: 704px;
 }
 
+.date-input {
+  background-color: #ede5db;
+  width: 177px;
+  margin-right: 8px;
+  margin-bottom: 4px;
+  color: #77736e;
+  border: 1px solid #666666;
+  border-top: 0px;
+  border-left: 0px;
+  font-size: 13px;
+}
+
 .clear-input {
   position: relative;
   right: 10px;
   top: 1px;
   height: 1.6rem;
   width: 1.5rem;
-  border: none;
+  border: 1px solid #666666;
+  border-top: 0px;
+  border-left: 0px;
   color: #fff;
   background-color: #c9000f;
   font-size: 16px;
@@ -538,6 +552,13 @@ a:hover {
   border: 1px solid #666666;
   border-top: 0px;
   border-left: 0px;
+}
+
+.date {
+  border: 1px solid #666666;
+  border-top: 0px;
+  border-left: 0px;
+  border-bottom: 0px !important;
 }
 
 .submit-box {

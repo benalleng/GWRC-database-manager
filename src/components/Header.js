@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 function Header({ user }) {
     const [open, setOpen] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
 
     const navMenu = () => {
         const x = document.getElementById("myNav");
@@ -19,15 +18,16 @@ function Header({ user }) {
 
     const handleLogin = () => {
         login();
-        setIsLogin(prevState => !prevState);
     };
 
     const handleLogout = () => {
         logout();
-        setIsLogin(prevState => !prevState);
     };
 
-    const handleOpen = () => setOpen(true);
+    const handleOpen = (e) => {
+        e.preventDefault();
+        setOpen(true);
+    }
 
     const handleClose = () => setOpen(false);
 

@@ -154,8 +154,9 @@ function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
                     title="Description"
                 />
             </label>
-            <label>
+            <label className='date-input'>&nbsp;Date Open <br/>
                 <input
+                    className='date'
                     type="date"
                     value={newForm.dateOpen}
                     onChange={handleChange}
@@ -163,8 +164,9 @@ function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
                     title="Application Open Date"
                 />
             </label>
-            <label>
+            <label className='date-input'>&nbsp;Date Due <br/>
                 <input
+                    className='date'
                     type="date"
                     value={newForm.dateDue}
                     onChange={handleChange}
@@ -172,8 +174,9 @@ function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
                     title="Application Due Date"
                 />
             </label>
-            <label>
+            <label className='date-input'>&nbsp;Date Applied <br/>
                 <input 
+                    className='date'
                     type="date"
                     defaultChecked={newForm.applied} 
                     onChange={handleChange}

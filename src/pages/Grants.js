@@ -154,6 +154,35 @@ function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
                     title="Description"
                 />
             </label>
+            <label>
+                <input
+                    type="url"
+                    value={newForm.url}
+                    onChange={handleChange}
+                    placeholder="URL"
+                    name="url"
+                    title="Grant info URL"
+                />
+            </label>
+            <label>
+                <input
+                    type="text"
+                    value={newForm.notes}
+                    onChange={handleChange}
+                    placeholder="Notes"
+                    name="notes"
+                    title="Notes"
+                />
+            </label>
+            <label hidden> Awarded Grant:&nbsp;
+                    <input 
+                        type="checkbox"
+                        defaultChecked={newForm.succeeded} 
+                        onChange={handleCheckClick}
+                        name="succeeded"
+                        title="Successfully Awarded Grant?"
+                        />
+            </label>
             <label className='date-input'>&nbsp;Date Open <br/>
                 <input
                     className='date'
@@ -185,35 +214,6 @@ function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
                     title="Date applied"
                     />
             </label>
-            <label>
-                <input
-                    type="url"
-                    value={newForm.url}
-                    onChange={handleChange}
-                    placeholder="URL"
-                    name="url"
-                    title="Grant info URL"
-                />
-            </label>
-            <label>
-                <input
-                    type="text"
-                    value={newForm.notes}
-                    onChange={handleChange}
-                    placeholder="Notes"
-                    name="notes"
-                    title="Notes"
-                />
-            </label>
-            <label hidden> Awarded Grant:&nbsp;
-                    <input 
-                        type="checkbox"
-                        defaultChecked={newForm.succeeded} 
-                        onChange={handleCheckClick}
-                        name="succeeded"
-                        title="Successfully Awarded Grant?"
-                        />
-                </label>
                 <div className='submit-box'>
                     <input className="submit" type="submit" value="Create" />
                     <button className='clear' onClick={clearInput}>Clear</button>

@@ -207,7 +207,7 @@ function Show({ people, deletePeople, updatePeople }) {
                         name="COC"
                         />
                 </label>
-                <input type="submit" value="Submit" />
+                <input className='submit' type="submit" value="Submit" />
             </form>
             }
             </div>

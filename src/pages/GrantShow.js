@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Box } from '@mui/system';
+import { Modal } from '@mui/material';
 
 function GrantShow({ grants, deleteGrants, updateGrants }) {
+    const [openEdit, setOpenEdit] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
     const { id } = useParams();
     const grant = grants ? grants.find(p => p._id === id) : null;
     const navigate = useNavigate();
@@ -19,8 +23,17 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
     });
     
     const [isEditing, setIsEditing] = useState(false);
+
+    const handleOpenEdit = () => setOpenEdit(true);
+
+    const handleCloseEdit = () => setOpenEdit(false);
+
+    const handleOpenDelete = () => setOpenDelete(true);
+
+    const handleCloseDelete = () => setOpenDelete(false);
     
     const handleEdit = () => {
+        handleCloseEdit();
         setIsEditing(prevState => !prevState);
     };
 
@@ -41,24 +54,6 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
         setIsEditing(false)
         alert('Updated!')
         updateGrants(editForm, id);
-    };
-    
-    const handleConfirm = () => {
-        const confirmBox = window.confirm(
-            `Are you sure you want to delete ${grant.name}?`
-        )
-        if (confirmBox === true) {
-            handleDelete();
-        }
-    };
-
-    const handleConfirmEdit = () => {
-        const confirmBox = window.confirm(
-            `Are you sure you want to edit ${grant.name}?`
-        )
-        if (confirmBox === true) {
-            handleEdit();
-        }
     };
 
     const handleCheckClick = () => {
@@ -83,8 +78,38 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                 <h3>{grant.succeeded ? <>Succeeded</>: <>Not successful</>}</h3>
                 <h3><a href={grant.url}>{grant.url.slice(8)}</a></h3>
                 <h3>{grant.notes ? <>Notes: {grant.notes}</>: null}</h3>
-                <button onClick={isEditing ? handleEdit : handleConfirmEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
-                <button onClick={handleConfirm}>Delete</button>
+                <button className='edit' onClick={isEditing ? handleEdit : handleOpenEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
+                    <Modal
+                        open={openEdit}
+                        onClose={handleCloseEdit}  
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description" 
+                    >
+                        <Box>
+                            <h2 id="parent-modal-title">Confirm Edit</h2>
+                            <p>
+                                Are you sure you want to edit {grant.name}?
+                            </p>
+                            <button className='confirm' onClick={handleEdit}>Yes</button>
+                            <button className='cancel' onClick={handleCloseEdit}>Cancel</button>
+                        </Box>
+                    </Modal>
+                <button className='delete' onClick={handleOpenDelete}>Delete</button>
+                    <Modal
+                        open={openDelete}
+                        onClose={handleCloseDelete}  
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description" 
+                    >
+                        <Box>
+                            <h2 id="parent-modal-title">Confirm Delete</h2>
+                            <p>
+                                Are you sure you want to delete {grant.name}?
+                            </p>
+                            <button className='confirm' onClick={handleDelete}>Yes</button>
+                            <button className='cancel' onClick={handleCloseDelete}>Cancel</button>
+                        </Box>
+                    </Modal>
             </section>
         )
     };

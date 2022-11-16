@@ -126,8 +126,10 @@ function Resources({ resources, user, createResources, sortPeopleAlphabetical })
                         name="url"
                         />
                 </label>
-                <input className="submit" type="submit" value="Submit" />
-                <button onClick={clearInput}>Clear</button>
+                <div className="submit-box">
+                    <input className="submit" type="submit" value="Submit" />
+                    <button className='clear' onClick={clearInput}>Clear</button>
+                </div>
             </form>
             </div>
             <div className='index-list'>

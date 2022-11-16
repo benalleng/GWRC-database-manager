@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Box } from '@mui/system';
+import { Modal } from '@mui/material';
 
 function ResourceShow({ resources, deleteResources, updateResources }) {
+    const [openEdit, setOpenEdit] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
     const { id } = useParams();
     const resource = resources ? resources.find(p => p._id === id) : null;
     const navigate = useNavigate();
@@ -13,8 +17,17 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
     });
     
     const [isEditing, setIsEditing] = useState(false);
+
+    const handleOpenEdit = () => setOpenEdit(true);
+
+    const handleCloseEdit = () => setOpenEdit(false);
+
+    const handleOpenDelete = () => setOpenDelete(true);
+
+    const handleCloseDelete = () => setOpenDelete(false);
     
     const handleEdit = () => {
+        handleCloseEdit();
         setIsEditing(prevState => !prevState);
     };
 
@@ -37,24 +50,6 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
         updateResources(editForm, id);
     };
     
-    const handleConfirm = () => {
-        const confirmBox = window.confirm(
-            `Are you sure you want to delete ${resource.name}?`
-        )
-        if (confirmBox === true) {
-            handleDelete();
-        }
-    };
-
-    const handleConfirmEdit = () => {
-        const confirmBox = window.confirm(
-            `Are you sure you want to edit ${resource.name}?`
-        )
-        if (confirmBox === true) {
-            handleEdit();
-        }
-    };
-    
     const loading = () => {
         return <h1>Loading ...</h1>
     };
@@ -66,8 +61,38 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
                 <h1 className='show-title'>{resource.name}</h1>
                 <h3>Description: {resource.description}</h3>
                 <h3><a href={resource.url}>{resource.url.slice(8)}</a></h3>
-                <button onClick={isEditing ? handleEdit : handleConfirmEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
-                <button onClick={handleConfirm}>Delete</button>
+                <button className='edit' onClick={isEditing ? handleEdit : handleOpenEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
+                    <Modal
+                        open={openEdit}
+                        onClose={handleCloseEdit}  
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description" 
+                    >
+                        <Box>
+                            <h2 id="parent-modal-title">Confirm Edit</h2>
+                            <p>
+                                Are you sure you want to edit {resource.name}?
+                            </p>
+                            <button className='confirm' onClick={handleEdit}>Yes</button>
+                            <button className='cancel' onClick={handleCloseEdit}>Cancel</button>
+                        </Box>
+                    </Modal>
+                <button className='delete' onClick={handleOpenDelete}>Delete</button>
+                    <Modal
+                        open={openDelete}
+                        onClose={handleCloseDelete}  
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description" 
+                    >
+                        <Box>
+                            <h2 id="parent-modal-title">Confirm Delete</h2>
+                            <p>
+                                Are you sure you want to delete {resource.name}?
+                            </p>
+                            <button className='confirm' onClick={handleDelete}>Yes</button>
+                            <button className='cancel' onClick={handleCloseDelete}>Cancel</button>
+                        </Box>
+                    </Modal>
             </section>
         )
     };
@@ -113,7 +138,7 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
                         name="url"
                         />
                 </label>
-                <input type="submit" value="Submit" />
+                <input className='submit' type="submit" value="Submit" />
             </form>
             }
             </div>

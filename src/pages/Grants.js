@@ -211,8 +211,10 @@ function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
                         title="Successfully Awarded Grant?"
                         />
                 </label>
-            <input className="submit" type="submit" value="Submit" />
-            <button onClick={clearInput}>Clear</button>
+                <div className='submit-box'>
+                    <input className="submit" type="submit" value="Submit" />
+                    <button className='clear' onClick={clearInput}>Clear</button>
+                </div>
         </form>
             </div>
             <div className='index-list'>

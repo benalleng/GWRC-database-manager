@@ -197,7 +197,7 @@ function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
                     type="text"
                     value={newForm.notes}
                     onChange={handleChange}
-                    placeholder="lorem ipsum"
+                    placeholder="Notes"
                     name="notes"
                     title="Notes"
                 />

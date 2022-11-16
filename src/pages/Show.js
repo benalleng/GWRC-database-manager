@@ -4,6 +4,7 @@ import { Modal } from '@mui/material';
 import { Box } from '@mui/system';
 
 function Show({ people, deletePeople, updatePeople }) {
+    const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const { id } = useParams();
@@ -44,10 +45,17 @@ function Show({ people, deletePeople, updatePeople }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIsEditing(false)
-        alert('Updated!')
+        setIsEditing(false);
         updatePeople(editForm, id);
+        handleClose();
     };
+
+    const handleOpen = (e) => {
+        e.preventDefault();
+        setOpen(true);
+    }
+    
+    const handleClose = () => setOpen(false);
 
     const handleOpenEdit = () => setOpenEdit(true);
 
@@ -125,7 +133,7 @@ function Show({ people, deletePeople, updatePeople }) {
             <div className='show-container'>
             { people ? loaded() : loading() }
             {isEditing && 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleOpen}>
                 <label>Name: <br />
                     <input 
                         type="text"
@@ -195,7 +203,7 @@ function Show({ people, deletePeople, updatePeople }) {
                         type="text"
                         value={editForm.notes} 
                         onChange={handleChange}
-                        placeholder="lorem ipsum"
+                        placeholder="Notes"
                         name="notes"
                         />
                 </label>
@@ -207,7 +215,21 @@ function Show({ people, deletePeople, updatePeople }) {
                         name="COC"
                         />
                 </label>
-                <input className='submit' type="submit" value="Submit" />
+                <button className='submit' onClick={handleOpen}>Submit</button>
+                <Modal
+                        open={open}
+                        onClose={handleSubmit}  
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description" 
+                    >
+                        <Box>
+                            <h2 id="parent-modal-title">Updated</h2>
+                            <p>
+                                {person.name} has been updated!
+                            </p>
+                            <button className='cancel' onClick={handleSubmit}>Ok</button>
+                        </Box>
+                    </Modal>
             </form>
             }
             </div>

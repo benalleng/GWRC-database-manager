@@ -194,7 +194,7 @@ function Index({ people, user, createPeople, sortPeopleAlphabetical }) {
                         type="text"
                         value={newForm.notes} 
                         onChange={handleChange}
-                        placeholder="lorem ipsum"
+                        placeholder="Notes"
                         name="notes"
                         />
                 </label>

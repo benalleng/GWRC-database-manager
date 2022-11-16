@@ -4,6 +4,7 @@ import { Box } from '@mui/system';
 import { Modal } from '@mui/material';
 
 function GrantShow({ grants, deleteGrants, updateGrants }) {
+    const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const { id } = useParams();
@@ -51,10 +52,17 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIsEditing(false)
-        alert('Updated!')
+        setIsEditing(false);
         updateGrants(editForm, id);
+        handleClose();
     };
+
+    const handleOpen = (e) => {
+        e.preventDefault();
+        setOpen(true);
+    }
+    
+    const handleClose = () => setOpen(false);
 
     const handleCheckClick = () => {
         let succeededBool = !editForm.succeeded;
@@ -125,7 +133,7 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
             <div className='show-container'>
             { grants ? loaded() : loading() }
             {isEditing && 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleOpen}>
             <label>Name: <br />
                 <input
                     type="text"
@@ -213,7 +221,21 @@ function GrantShow({ grants, deleteGrants, updateGrants }) {
                     title="Successfully Awarded Grant?"
                     />
             </label>
-            <input className="submit" type="submit" value="Submit" />
+            <button className='submit' onClick={handleOpen}>Submit</button>
+                <Modal
+                        open={open}
+                        onClose={handleSubmit}  
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description" 
+                    >
+                        <Box>
+                            <h2 id="parent-modal-title">Updated</h2>
+                            <p>
+                                {grant.name} has been updated!
+                            </p>
+                            <button className='cancel' onClick={handleSubmit}>Ok</button>
+                        </Box>
+                    </Modal>
         </form>
             }
             </div>

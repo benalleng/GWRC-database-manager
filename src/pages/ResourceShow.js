@@ -4,6 +4,7 @@ import { Box } from '@mui/system';
 import { Modal } from '@mui/material';
 
 function ResourceShow({ resources, deleteResources, updateResources }) {
+    const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const { id } = useParams();
@@ -17,6 +18,8 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
     });
     
     const [isEditing, setIsEditing] = useState(false);
+
+
 
     const handleOpenEdit = () => setOpenEdit(true);
 
@@ -45,10 +48,17 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIsEditing(false)
-        alert('Updated!')
+        setIsEditing(false);
         updateResources(editForm, id);
+        handleClose();
     };
+
+    const handleOpen = (e) => {
+        e.preventDefault();
+        setOpen(true);
+    }
+    
+    const handleClose = () => setOpen(false);
     
     const loading = () => {
         return <h1>Loading ...</h1>
@@ -108,7 +118,7 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
             <div className='show-container'>
             { resources ? loaded() : loading() }
             {isEditing && 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleOpen}>
                 <label>Name:
                     <input 
                         type="text"
@@ -138,7 +148,21 @@ function ResourceShow({ resources, deleteResources, updateResources }) {
                         name="url"
                         />
                 </label>
-                <input className='submit' type="submit" value="Submit" />
+                <button className='submit' onClick={handleOpen}>Submit</button>
+                <Modal
+                        open={open}
+                        onClose={handleSubmit}  
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description" 
+                    >
+                        <Box>
+                            <h2 id="parent-modal-title">Updated</h2>
+                            <p>
+                                {resource.name} has been updated!
+                            </p>
+                            <button className='cancel' onClick={handleSubmit}>Ok</button>
+                        </Box>
+                    </Modal>
             </form>
             }
             </div>

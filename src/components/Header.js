@@ -56,7 +56,7 @@ function Header({ user }) {
                 user ?
                 <>
                     <h1 className='auth-welcome'>Hi, {user.displayName.split(' ')[0]}!</h1>
-                    <h1 className="auth" onClick={isLogin ? handleOpen : handleLogin}>{isLogin ? 'Logout' : 'Login'}</h1>
+                    <h1 className="auth" onClick={handleOpen}>Logout</h1>
                     <Modal
                         open={open}
                         onClose={handleClose}  
@@ -74,7 +74,7 @@ function Header({ user }) {
                     </Modal>
                 </>
                 :
-                <h1 className="auth" onClick={isLogin ? handleClose : handleLogin}>Login</h1>
+                <h1 className="auth" onClick={handleLogin}>Login</h1>
             }
         </nav>
         </>

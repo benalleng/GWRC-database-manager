@@ -333,7 +333,7 @@ function Main({user}) {
                         <h2 id="parent-modal-title">Database Error</h2>
                         <p>
                             Error connecting to database. Please refresh the page and try again.
-                            If error persists, please contact the adinistrator <Link onClick={handleClose} to="/contacts/contact/6335b66c81a0dacab2c1f501">here</Link>.
+                            If error persists, please contact the adinistrator <Link onClick={handleClose} to="/contacts/contact/6335b66c81a0dacab2c1f501">Here</Link>.
                         </p>
                         <button className='cancel' onClick={handleClose}>Ok</button>
                     </Box>

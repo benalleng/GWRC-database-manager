@@ -287,12 +287,13 @@ a:hover {
   width: 3.2rem;
   font-size: xx-large;
   border: 0;
-  background-color: #4c1417;
+  background-color: rgba(0,0,0,0);
   color: #f7efe4;
 }
 
 .nav .icon:hover {
   background-color: rgba(0,0,0,0.5);
+  cursor: pointer;
 }
 
 #main-footer {
@@ -380,6 +381,26 @@ a:hover {
   flex-direction: row;
   width: 60%;
   padding-left: 10%;
+}
+
+@media screen and (max-width: 750px) {
+  .footer-block {
+    flex-direction: column;
+    font-size: medium;
+  }
+
+  .sitemap {
+    position: relative;
+    right: 20px;
+  }
+
+  .designer, .copyright {
+    font-size: smaller;
+  }
+
+  .designer {
+    display: none;
+  }
 }
 
 .avatar-image {

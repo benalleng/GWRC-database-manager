@@ -35,10 +35,10 @@ function Footer(props) {
                 <div className='footer-bottom'>
                     <div id="bottom-container" className='container'>
                         <div className='footer-text'>
-                            <p>
+                            <p className="copyright">
                                 © George Washington Regional Commission
                             </p>
-                            <p>
+                            <p className='designer'>
                                 Website Designed By Ben G. 
                             </p>
                         </div>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { Modal } from '@mui/material';
+import { Box } from '@mui/system';
 
 import Index from "../pages/Index";
 import Show from "../pages/Show";
@@ -15,6 +17,7 @@ function PrivatePageContainer({ children, user }) {
 }
 
 function Main({user}) {
+    const [open, setOpen] = useState(false);
     const [people, setPeople ] = useState(null);
     const [grants, setGrants ] = useState(null);
     const [resources, setResources] = useState(null);
@@ -22,6 +25,13 @@ function Main({user}) {
     const PEOPLE_API_URL = 'https://gwrc-database-app.herokuapp.com/api/people/'
     const GRANTS_API_URL = 'https://gwrc-database-app.herokuapp.com/api/grants/'
     const RESOURCES_API_URL = 'https://gwrc-database-app.herokuapp.com/api/resources/'
+
+    const handleOpen = () => {
+        setOpen(true);
+    }
+    
+    const handleClose = () => setOpen(false);
+
 
     const getPeopleData = async () => {
         if(!user) return;
@@ -57,6 +67,8 @@ function Main({user}) {
             });
             getPeopleData();
         } catch (error) {
+            console.log(error)
+            handleOpen();
             // TODO handle errors
         }
     }
@@ -75,6 +87,7 @@ function Main({user}) {
         } catch (error) {
             // TODO handle errors
             console.log(error);
+            handleOpen();
         }
     }
 
@@ -94,6 +107,7 @@ function Main({user}) {
         } catch (error) {
             // TODO handle errors
             console.log(error);
+            handleOpen();
         }
     }
 
@@ -131,6 +145,8 @@ function Main({user}) {
             });
             getGrantsData();
         } catch (error) {
+            console.log(error);
+            handleOpen();
             // TODO handle errors
         }
     }
@@ -149,6 +165,7 @@ function Main({user}) {
         } catch (error) {
             // TODO handle errors
             console.log(error);
+            handleOpen();
         }
     }
 
@@ -168,6 +185,7 @@ function Main({user}) {
         } catch (error) {
             // TODO handle errors
             console.log(error);
+            handleOpen();
         }
     }
 
@@ -205,6 +223,8 @@ function Main({user}) {
             });
             getResourcesData();
         } catch (error) {
+            console.log(error);
+            handleOpen();
             // TODO handle errors
         }
     }
@@ -223,6 +243,7 @@ function Main({user}) {
         } catch (error) {
             // TODO handle errors
             console.log(error);
+            handleOpen();
         }
     }
 
@@ -242,6 +263,7 @@ function Main({user}) {
         } catch (error) {
             // TODO handle errors
             console.log(error);
+            handleOpen();
         }
     }
 
@@ -327,6 +349,20 @@ function Main({user}) {
                 </PrivatePageContainer>
                 } />
             </Routes>
+                <Modal
+                    open={open}
+                    onClose={handleClose}  
+                    aria-labelledby="parent-modal-title"
+                    aria-describedby="parent-modal-description" 
+                >
+                    <Box>
+                        <h2 id="parent-modal-title">Database Error</h2>
+                        <p>
+                            Error connecting to database. Please refresh the page and try again.
+                        </p>
+                        <button className='cancel' onClick={handleClose}>Ok</button>
+                    </Box>
+                </Modal>
         </main>
     )
 }

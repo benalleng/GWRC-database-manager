@@ -37,7 +37,6 @@ function Main({user}) {
         if(!user) return;
         try {
             const token = await user.getIdToken();
-            // console.log(token);
             const response = await fetch(PEOPLE_API_URL, {
                 method: 'GET',
                 headers: {
@@ -47,9 +46,7 @@ function Main({user}) {
             const data = await response.json();
             setPeople(data);
         } catch (error) {
-            console.log(error);
-            // TODO add logic to alert the user that something went wrong
-            
+            handleOpen();  
         }
     }
 
@@ -67,9 +64,7 @@ function Main({user}) {
             });
             getPeopleData();
         } catch (error) {
-            console.log(error)
             handleOpen();
-            // TODO handle errors
         }
     }
 
@@ -85,8 +80,6 @@ function Main({user}) {
             });
             getPeopleData();
         } catch (error) {
-            // TODO handle errors
-            console.log(error);
             handleOpen();
         }
     }
@@ -105,8 +98,6 @@ function Main({user}) {
             });
             getPeopleData();
         } catch (error) {
-            // TODO handle errors
-            console.log(error);
             handleOpen();
         }
     }
@@ -115,7 +106,6 @@ function Main({user}) {
         if(!user) return;
         try {
             const token = await user.getIdToken();
-            // console.log(token);
             const response = await fetch(GRANTS_API_URL, {
                 method: 'GET',
                 headers: {
@@ -125,8 +115,7 @@ function Main({user}) {
             const data = await response.json();
             setGrants(data);
         } catch (error) {
-            console.log(error);
-            // TODO add logic to alert the user that something went wrong
+            handleOpen();
             
         }
     }
@@ -145,9 +134,7 @@ function Main({user}) {
             });
             getGrantsData();
         } catch (error) {
-            console.log(error);
             handleOpen();
-            // TODO handle errors
         }
     }
 
@@ -163,8 +150,6 @@ function Main({user}) {
             });
             getGrantsData();
         } catch (error) {
-            // TODO handle errors
-            console.log(error);
             handleOpen();
         }
     }
@@ -183,8 +168,6 @@ function Main({user}) {
             });
             getGrantsData();
         } catch (error) {
-            // TODO handle errors
-            console.log(error);
             handleOpen();
         }
     }
@@ -193,7 +176,6 @@ function Main({user}) {
         if(!user) return;
         try {
             const token = await user.getIdToken();
-            // console.log(token);
             const response = await fetch(RESOURCES_API_URL, {
                 method: 'GET',
                 headers: {
@@ -203,9 +185,7 @@ function Main({user}) {
             const data = await response.json();
             setResources(data);
         } catch (error) {
-            console.log(error);
-            // TODO add logic to alert the user that something went wrong
-            
+            handleOpen();
         }
     }
 
@@ -223,9 +203,7 @@ function Main({user}) {
             });
             getResourcesData();
         } catch (error) {
-            console.log(error);
             handleOpen();
-            // TODO handle errors
         }
     }
 
@@ -241,8 +219,6 @@ function Main({user}) {
             });
             getResourcesData();
         } catch (error) {
-            // TODO handle errors
-            console.log(error);
             handleOpen();
         }
     }
@@ -261,8 +237,6 @@ function Main({user}) {
             });
             getResourcesData();
         } catch (error) {
-            // TODO handle errors
-            console.log(error);
             handleOpen();
         }
     }

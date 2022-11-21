@@ -42,7 +42,7 @@ function Resources({ resources, user, createResources, sortPeopleAlphabetical })
             <div>
             {currentResources.map(resource => (
                 <div className="resource" key={resource._id}>
-                    <h2>
+                    <h2 id={resource._id}>
                         <Link to={`/resources/resource/${resource._id}`}>
                             {resource.name}
                         </Link>

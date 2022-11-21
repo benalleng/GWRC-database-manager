@@ -48,7 +48,7 @@ function Grants({ grants, user, createGrants, sortPeopleAlphabetical }) {
             <div>
             {currentGrants.map(grant => (
                 <div className={grant.applied === 'false' ? "grant" : "grant-applied"} key={grant._id}>
-                    <h2>
+                    <h2 id={grant._id}>
                         <Link to={`/grants/grant/${grant._id}`}>
                             {grant.name}
                         </Link>

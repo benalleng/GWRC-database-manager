@@ -60,7 +60,7 @@ function Resources({ resources, user, createResources, sortPeopleAlphabetical })
     };
 
     const loading = () => {
-        return <h1>Loading ...</h1>;
+        return <h1 className='loading'>Loading ...</h1>;
     };
 
     const handleChange = (e) => {

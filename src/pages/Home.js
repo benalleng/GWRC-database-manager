@@ -23,7 +23,7 @@ function Home({user, people, grants, resources}) {
     }
 
     const loading = () => {
-        return <h1 style={styleObj}>Loading...</h1>
+        return <h1 style={styleObj} className='loading'>Loading...</h1>
     }
 
     return (

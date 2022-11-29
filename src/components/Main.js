@@ -15,7 +15,7 @@ import Login from './Login'
 import SignUp from './Signup';
 
 function PrivatePageContainer({ children, user }) {
-    return user ? children : <Navigate to="/" />
+    return user ? children : <Navigate to="/login" />
 }
 
 function Main({user}) {

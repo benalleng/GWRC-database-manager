@@ -19,7 +19,7 @@ const LogIn = () => {
     const { email, password } = e.target.elements;
     try {
       const promise = signInWithEmailAndPassword(auth, email.value, password.value);
-      promise.catch(e => alert(e.toString().split(':')[2]));
+      promise.catch(e => alert(`Login message ${e.toString().split(':')[2]}`));
       email.value = '';
       password.value = '';
     } catch (error) {
@@ -30,7 +30,6 @@ const LogIn = () => {
   };
   const { currentUser } = useContext(AuthContext);
   if (currentUser) {
-    alert(`Logged in as ${currentUser.email}`)
     return <Navigate to="/search" />;
   }
   return (

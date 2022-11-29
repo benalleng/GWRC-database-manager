@@ -17,7 +17,8 @@ function Header({ user }) {
         }
     };
 
-    const handleLogout = () => {
+    const handleLogout = (e) => {
+        e.preventDefault();
         logout();
     };
 
@@ -26,7 +27,11 @@ function Header({ user }) {
         setOpen(true);
     }
 
-    const handleClose = () => setOpen(false);
+    const handleClose = (e) =>{
+        e.preventDefault();
+        setOpen(false);
+    }
+        
 
     return(
         <>
@@ -52,7 +57,7 @@ function Header({ user }) {
             {
                 user ?
                 <>
-                    {/* <h1 className='auth-welcome'>Hi, {user.split(' ')[0]}!</h1> */}
+                    {/* <h1 className='auth-welcome'>User: {user.email.split('@')[0]}</h1> */}
                     <h1 className="auth" onClick={handleOpen}>Logout</h1>
                     <Modal
                         open={open}

@@ -256,11 +256,13 @@ function Main({user}) {
         <main>
             <Routes>
                 <Route path='/' element={
+                <PrivatePageContainer user={user}>
                     <Home
                     user={user}
                     people={people}
                     grants={grants}
                     resources={resources}/>
+                </PrivatePageContainer>
                 } />
                 <Route path="/login" element={
                     <Login/>

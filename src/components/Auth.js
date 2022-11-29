@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
     });
   }, []);
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <h1 className="main-loading">Loading...</h1>;
   }
   return (
     <AuthContext.Provider value={{ currentUser }}>

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
-// import { auth } from 'firebase/auth';
+import { AuthProvider } from './components/Auth';
 
 export default function App() {
   const [ user, setUser ] = useState(null);
@@ -22,9 +22,11 @@ export default function App() {
 
   return (
     <div className='App'>
-      <Header user={user}/>
-      <Main user={user}/>
-      <Footer />
+      <AuthProvider>
+        <Header user={user}/>
+        <Main user={user}/>
+        <Footer />
+      </AuthProvider>
     </div>
   );
 }

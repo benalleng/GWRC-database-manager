@@ -250,6 +250,7 @@ function Main({user}) {
 
     useEffect(() => {
         user ? (getPeopleData() && getGrantsData() && getResourcesData()) : (setGrants(null) && setPeople(null) && setResources(null));
+        // eslint-disable-next-line
     }, [user]);
 
     return(

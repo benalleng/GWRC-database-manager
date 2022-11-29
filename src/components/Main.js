@@ -11,6 +11,8 @@ import Resources from '../pages/Resources';
 import ResourceShow from '../pages/ResourceShow';
 import Search from '../pages/Search'
 import Home from '../pages/Home';
+import Login from './Login'
+import SignUp from './Signup';
 
 function PrivatePageContainer({ children, user }) {
     return user ? children : <Navigate to="/" />
@@ -259,6 +261,12 @@ function Main({user}) {
                     people={people}
                     grants={grants}
                     resources={resources}/>
+                } />
+                <Route path="/login" element={
+                    <Login/>
+                } />
+                <Route path="/signup" element={
+                    <SignUp/>
                 } />
                 <Route path='/search' element={
                 <PrivatePageContainer user={user}>

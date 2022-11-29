@@ -1,8 +1,9 @@
-import { login, logout } from '../firebase';
+// import { signInWithEmailAndPassword, signOut } from '../firebase';
 import { Link } from 'react-router-dom';
 import { Modal } from '@mui/material';
 import { Box } from '@mui/system';
 import { useState } from 'react';
+import { logout } from '../firebase';
 
 function Header({ user }) {
     const [open, setOpen] = useState(false);
@@ -14,10 +15,6 @@ function Header({ user }) {
         } else {
           x.className = "nav";
         }
-    };
-
-    const handleLogin = () => {
-        login();
     };
 
     const handleLogout = () => {
@@ -55,7 +52,7 @@ function Header({ user }) {
             {
                 user ?
                 <>
-                    <h1 className='auth-welcome'>Hi, {user.displayName.split(' ')[0]}!</h1>
+                    {/* <h1 className='auth-welcome'>Hi, {user.split(' ')[0]}!</h1> */}
                     <h1 className="auth" onClick={handleOpen}>Logout</h1>
                     <Modal
                         open={open}
@@ -74,7 +71,9 @@ function Header({ user }) {
                     </Modal>
                 </>
                 :
-                <h1 className="auth" onClick={handleLogin}>Login</h1>
+                <h1>
+                    <Link className="auth" to="/login">Login</Link>
+                </h1>
             }
         </nav>
         </>

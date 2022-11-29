@@ -608,6 +608,15 @@ a:hover {
   min-height: 704px;
 }
 
+.main-loading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: #c9000f;
+  min-height: 1300px;
+  padding-top: 35%;
+}
+
 .center {
   display: flex;
   justify-content: center;

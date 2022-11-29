@@ -134,6 +134,10 @@ input:not(.submit) {
   width: 177px;
 }
 
+a.auth {
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+
 a {
   font-family: 'Open Sans',Helvetica,Arial,Lucida,sans-serif !important;
   color: #c9000f;
@@ -468,6 +472,20 @@ a:hover {
   align-items: flex-start;
   padding-top: 10%;
   min-height: 704px;
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5%;
+  min-height: 704px;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .date-input {

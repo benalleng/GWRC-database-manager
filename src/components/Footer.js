@@ -29,6 +29,11 @@ function Footer(props) {
                                 Resources
                             </Link>
                         </li>
+                        <li>
+                            <Link to='/search'>
+                                Search
+                            </Link>
+                        </li>
                     </ul>
                 </div>
                 </div>
